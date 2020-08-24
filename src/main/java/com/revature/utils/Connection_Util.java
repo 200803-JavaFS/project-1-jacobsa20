@@ -16,7 +16,7 @@ public class Connection_Util {
 
 		// never ever do this. don't hardcode your creds into your code.
 		// but it's fine to do for this project.
-		String url = "jdbc:postgresql://demosdb.cnhivgivm0u1.us-east-1.rds.amazonaws.com:5432/demos";
+		String url = "jdbc:postgresql://reimb.cbjkqgslef2x.us-east-2.rds.amazonaws.com:5432/projectone";
 		String username = "postgres";
 		String password = "password";
 

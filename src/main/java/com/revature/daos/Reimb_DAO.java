@@ -64,7 +64,7 @@ public class Reimb_DAO implements IReimb_DAO {
 		return null;
 	}
 
-	@Override
+	//@Override
 	public boolean addReimb(Reimb r) {
 		try (Connection conn = Connection_Util.getConnection()) {
 			
@@ -93,7 +93,7 @@ public class Reimb_DAO implements IReimb_DAO {
 		return false;
 	}
 
-	@Override
+	//@Override
 	public boolean updateReimb(Reimb r) {
 		try (Connection conn = Connection_Util.getConnection()) {
 			String sql = "UPDATE reimbursement SET reimb_amount= ?, reimb_submitted= ?,"
@@ -167,5 +167,17 @@ public class Reimb_DAO implements IReimb_DAO {
 			e.printStackTrace();
 		}
 		return Collections.emptyList();
+	}
+
+	@Override
+	public boolean addReimb(Object r) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean updateReimb(Object r) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }
