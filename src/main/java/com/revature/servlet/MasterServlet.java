@@ -36,7 +36,7 @@ public class MasterServlet extends HttpServlet {
 			switch (portions[0]) {
 			case "login":
 				if (req.getMethod().equals("POST")) {
-					System.out.println("inside login");
+					System.out.println("login");
 					uc.login(req, res);
 					break;
 				}
@@ -45,7 +45,7 @@ public class MasterServlet extends HttpServlet {
 
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
-			res.getWriter().print("Not an Integer");
+			res.getWriter().print("Not an Int");
 			res.setStatus(400);
 		}
 

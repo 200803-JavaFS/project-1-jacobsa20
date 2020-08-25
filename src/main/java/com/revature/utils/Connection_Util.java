@@ -16,20 +16,20 @@ public class Connection_Util {
 
 		// never ever do this. don't hardcode your creds into your code.
 		// but it's fine to do for this project.
-		String url = "jdbc:postgresql://reimb.cbjkqgslef2x.us-east-2.rds.amazonaws.com:5432/projectone";
+		String url = "jdbc:postgresql://javafs200803.cbjkqgslef2x.us-east-2.rds.amazonaws.com/projectone";
 		String username = "postgres";
-		String password = "password";
+		String password = "Password!";
 
 		return DriverManager.getConnection(url, username, password);
 
 	}
 
-//	public static void main(String[] args) {
-//		try (Connection conn = Connection_Util.getConnection()) {
-//			System.out.println("Connection successful.");
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
-//	}
+	public static void main(String[] args) {
+		try (Connection conn = Connection_Util.getConnection()) {
+			System.out.println("Connection successful.");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 
 }

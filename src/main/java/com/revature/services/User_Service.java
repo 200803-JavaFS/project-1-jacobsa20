@@ -7,6 +7,7 @@ import org.apache.logging.log4j.Logger;
 
 import com.revature.daos.IUser_DAO;
 import com.revature.daos.User_DAO;
+import com.revature.models.LoginDTO;
 import com.revature.models.User;
 
 public class User_Service {
@@ -42,5 +43,13 @@ public class User_Service {
 	public boolean updateUser(User u) {
 		log.info("Updating User " + u);
 		return uDao.updateUser(u);
+	}
+	
+	public boolean login(LoginDTO l) {
+		User u = uDao.findByUsername(l.username);
+		if(u.getPassword().equals(l.password)) {
+			return true;
+		}		
+		return false;
 	}
 }
