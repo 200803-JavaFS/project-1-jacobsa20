@@ -13,7 +13,7 @@ import com.revature.models.User_Role;
 import com.revature.utils.Connection_Util;
 
 public class User_DAO implements IUser_DAO {
-	
+
 	@Override
 	public List<User> findAll() {
 		try (Connection conn = Connection_Util.getConnection()) {
@@ -45,7 +45,26 @@ public class User_DAO implements IUser_DAO {
 
 	@Override
 	public User findByUserPassword(String username, String password) {
-		// TODO Auto-generated method stub
+		try (Connection conn = Connection_Util.getConnection()) {
+			String sql = "SELECT * FROM ers_users WHERE ers_username = ?" + "AND ers_password= ?;";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, username);
+			ps.setString(2, password);
+			ResultSet rs = ps.executeQuery();
+			User u = new User();
+			if (rs.next()) {
+				u.setId(rs.getInt("ers_users_id"));
+				u.setUsername(rs.getString("ers_username"));
+				u.setPassword(rs.getString("ers_password"));
+				u.setFirst(rs.getString("user_first_name"));
+				u.setLast(rs.getString("user_last_name"));
+				u.setEmail(rs.getString("user_email"));
+
+				return u;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		return null;
 	}
 
@@ -77,29 +96,49 @@ public class User_DAO implements IUser_DAO {
 
 	@Override
 	public boolean updateUser(User u) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+		try (Connection conn = Connection_Util.getConnection()) {
+			String sql = "UPDATE ers_user SET ers_username =?, ers_password=?,"
+					+ " user_first_name=?, user_last_name=?," 
+					+ " user_email=?, user_role_id=? WHERE ers_users_id=?;";
 
-	@Override
-	public boolean addUser(User u) {
-		try(Connection conn= Connection_Util.getConnection()){
-			String sql = "INSERT INTO ers_user (ers_username, ers_password, user_first_name, user_last_name, user_email)"
-					+"VALUES (?,?,?,?,?);";
-			PreparedStatement ps= conn.prepareStatement(sql);
+			PreparedStatement ps = conn.prepareStatement(sql);
+
 			int index = 0;
 			ps.setString(++index, u.getUsername());
 			ps.setString(++index, u.getPassword());
 			ps.setString(++index, u.getFirst());
 			ps.setString(++index, u.getLast());
 			ps.setString(++index, u.getEmail());
-//			if(u.getUserRoleId()!=0) {
-//				User_Role ur= u.getUserRoleId();
-//			}else {
-//				ps.setInt(++index, 0);
-//			}
-			
-		}catch(SQLException e) {
+			ps.setInt(++index, u.getUserRoleId());
+			ps.setInt(++index, u.getId());
+
+			ps.execute();
+			return true;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+
+	@Override
+	public boolean addUser(User u) {
+		try (Connection conn = Connection_Util.getConnection()) {
+			String sql = "INSERT INTO ers_user (ers_username, ers_password, user_first_name, user_last_name, user_email)"
+					+ "VALUES (?,?,?,?,?);";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			int index = 0;
+			ps.setString(++index, u.getUsername());
+			ps.setString(++index, u.getPassword());
+			ps.setString(++index, u.getFirst());
+			ps.setString(++index, u.getLast());
+			ps.setString(++index, u.getEmail());
+			ps.setInt(++index, u.getUserRoleId());
+
+			ps.execute();
+			return true;
+
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return false;
