@@ -39,7 +39,26 @@ public class User_DAO implements IUser_DAO {
 
 	@Override
 	public User findById(int id) {
-		// TODO Auto-generated method stub
+		try (Connection conn = Connection_Util.getConnection()) {
+			String sql = "SELECT * FROM ers_users WHERE ers_users_id= " +id+";";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			
+			ResultSet rs = ps.executeQuery(sql);
+			User u= new User();
+			if(rs.next()) {
+				u.setId(rs.getInt("ers_users_id"));
+				u.setUsername(rs.getString("ers_username"));
+				u.setPassword(rs.getString("ers_password"));
+				u.setFirst(rs.getString("user_first_name"));
+				u.setLast(rs.getString("user_last_name"));
+				u.setEmail(rs.getString("user_email"));
+				
+			return u;
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		return null;
 	}
 
