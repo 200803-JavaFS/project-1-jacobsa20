@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.revature.controllers.LoginController;
 import com.revature.controllers.Reimb_Controller;
 import com.revature.controllers.User_Controller;
 
@@ -16,7 +17,8 @@ public class MasterServlet extends HttpServlet {
 
 	private static User_Controller uc = new User_Controller();
 	private static Reimb_Controller rc = new Reimb_Controller();
-
+	private static final long serialVersionUID = 1L;
+	
 	public MasterServlet() {
 		super();
 	}
@@ -53,6 +55,12 @@ public class MasterServlet extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		res.setContentType("application/json");
+		res.setStatus(404);
+		
+		LoginController lc= new LoginController();
+		lc.login(req,res);
+		
 		doGet(req, res);
 	}
 

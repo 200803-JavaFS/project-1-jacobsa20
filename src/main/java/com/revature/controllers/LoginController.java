@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -16,7 +17,7 @@ public class LoginController {
 	private static LoginService ls = new LoginService();
 	private static ObjectMapper om = new ObjectMapper();
 
-	public void login(HttpServletRequest req, HttpServletResponse res) throws IOException {
+	public void login(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
 		if (req.getMethod().equals("GET")) {
 			// shows logging in with query params. DONT DO THIS!!!!
@@ -31,7 +32,9 @@ public class LoginController {
 					ses.setAttribute("user", l);
 					ses.setAttribute("loggedin", true);
 					res.setStatus(200);
-					res.getWriter().println("Login Successful");
+					res.setContentType("text/html");
+					//req.getRequestDispatcher("reimbursements.html").forward(req,res);
+					//res.getWriter().println("Login Successful");
 				} else {
 					HttpSession ses = req.getSession(false);
 					if (ses != null) {

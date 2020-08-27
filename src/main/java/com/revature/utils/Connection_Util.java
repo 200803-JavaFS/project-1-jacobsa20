@@ -24,12 +24,12 @@ public class Connection_Util {
 
 	}
 
-	public static void main(String[] args) {
-		try (Connection conn = Connection_Util.getConnection()) {
-			System.out.println("Connection successful.");
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
+//	public static void main(String[] args) {
+//		try (Connection conn = Connection_Util.getConnection()) {
+//			System.out.println("Connection successful.");
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+//	}
 
 }
