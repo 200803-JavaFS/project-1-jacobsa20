@@ -22,11 +22,6 @@ public class Reimb_Service {
 		return (Reimb) iRDao.findById(id);
 	}
 
-	public List<Reimb> findByUser(int userId) {
-		log.info("Retrieving all reimbursements tied to user with user_id=" + userId);
-		return iRDao.findByUser(userId);
-	}
-
 	public List<Reimb> findByStatus(String status) {
 		return iRDao.findByStatus(status);
 	}

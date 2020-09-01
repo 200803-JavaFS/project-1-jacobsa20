@@ -2,32 +2,50 @@ package com.revature.models;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class User implements Serializable {
 
+	private static final long serialVersionUID = 1L;
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+
+	@Column(nullable = false, unique = true)
 	private String username;
+
+	@Column(nullable = false)
 	private String password;
+
+	@Column(nullable = false)
 	private String first;
+
+	@Column(nullable = false)
 	private String last;
+
+	@Column(nullable = false, unique = true)
 	private String email;
 
-	//@ManytoOne(fetch=FetchType.EAGER, cascade= CascadeType.All)
-	//@JoinColumn(name="user")
-	private User userRoleId;
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name = "user")
+	private User_Role userRoleId;
 
 	public User() {
 		super();
 	}
 
-	public User(int id, String username, String password, String first, String last, String email, User userRoleId) {
+	public User(int id, String username, String password, String first, String last, String email,
+			User_Role userRoleId) {
 		super();
 		this.id = id;
 		this.username = username;
@@ -38,7 +56,7 @@ public class User implements Serializable {
 		this.userRoleId = userRoleId;
 	}
 
-	public User(String username, String password, String first, String last, String email, User userRoleId) {
+	public User(String username, String password, String first, String last, String email, User_Role userRoleId) {
 		super();
 		this.username = username;
 		this.password = password;
@@ -96,15 +114,14 @@ public class User implements Serializable {
 		this.email = email;
 	}
 
-	public User getUserRoleId() {
+	public User_Role getUserRoleId() {
 		return userRoleId;
 	}
 
-	public void setUserRoleId(User userRoleId) {
+	public void setUserRoleId(User_Role userRoleId) {
 		this.userRoleId = userRoleId;
 	}
 
-	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

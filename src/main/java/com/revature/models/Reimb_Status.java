@@ -1,7 +1,15 @@
 package com.revature.models;
 
+import javax.persistence.Column;
+import javax.persistence.Id;
+
 public class Reimb_Status {
+
+	private static final long serialVersionUID = 1L;
+
+	@Id
 	private int id;
+	@Column(nullable = false)
 	private String status;
 
 	public Reimb_Status() {

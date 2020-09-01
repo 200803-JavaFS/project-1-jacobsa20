@@ -2,38 +2,56 @@ package com.revature.models;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Reimb implements Serializable {
-	
+
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
-	@GeneratedValue(strategy= GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+
+	@Column(nullable = false)
 	private double amount;
 
+	@Column(nullable = false)
 	private String submitted;
+
 	private String resolved;
 	private String description;
-	private int author;
+
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name = "author")
+	private User author;
+
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name = "resolver")
 	private int resolver;
-	
-	//@ManytoOne(fetch=FetchType.EAGER, cascade= CascadeType.All)
-	private int statusId;
+
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name = "status_id")
+	private Reimb_Status statusId;
+
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name = "type_id")
 	private int typeId;
 
 	public Reimb() {
 		super();
 	}
 
-	public Reimb(double amount, String submitted, String resolved, String description, int author, int resolver,
-			int statusId, int typeId) {
+	public Reimb(double amount, String submitted, String resolved, String description, User author, int resolver,
+			Reimb_Status statusId, int typeId) {
 		super();
 		this.amount = amount;
 		this.submitted = submitted;
@@ -45,8 +63,8 @@ public class Reimb implements Serializable {
 		this.typeId = typeId;
 	}
 
-	public Reimb(int id, double amount, String submitted, String resolved, String description, int author, int resolver,
-			int statusId, int typeId) {
+	public Reimb(int id, double amount, String submitted, String resolved, String description, User author,
+			int resolver, Reimb_Status statusId, int typeId) {
 		super();
 		this.id = id;
 		this.amount = amount;
@@ -99,11 +117,11 @@ public class Reimb implements Serializable {
 		this.description = description;
 	}
 
-	public int getAuthor() {
+	public User getAuthor() {
 		return author;
 	}
 
-	public void setAuthor(int author) {
+	public void setAuthor(User author) {
 		this.author = author;
 	}
 
@@ -115,11 +133,11 @@ public class Reimb implements Serializable {
 		this.resolver = resolver;
 	}
 
-	public int getStatusId() {
+	public Reimb_Status getStatusId() {
 		return statusId;
 	}
 
-	public void setStatusId(int statusId) {
+	public void setStatusId(Reimb_Status statusId) {
 		this.statusId = statusId;
 	}
 
@@ -138,12 +156,12 @@ public class Reimb implements Serializable {
 		long temp;
 		temp = Double.doubleToLongBits(amount);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
-		result = prime * result + author;
+		result = prime * result + ((author == null) ? 0 : author.hashCode());
 		result = prime * result + ((description == null) ? 0 : description.hashCode());
 		result = prime * result + id;
 		result = prime * result + ((resolved == null) ? 0 : resolved.hashCode());
 		result = prime * result + resolver;
-		result = prime * result + statusId;
+		result = prime * result + ((statusId == null) ? 0 : statusId.hashCode());
 		result = prime * result + ((submitted == null) ? 0 : submitted.hashCode());
 		result = prime * result + typeId;
 		return result;
