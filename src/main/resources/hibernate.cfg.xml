@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding= "UTF-8"?>
+
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+		"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+	<session-factory>
+
+		<!-- JDBC config -->
+		<property name="hibernate.connection.username">postgres</property>
+		<property name="hibernate.connection.password">Password!</property>
+		<property name="hibernate.connection.url">jdbc:postgresql://javafs200803.cbjkqgslef2x.us-east-2.rds.amazonaws.com:5432/projectone
+		</property>
+		<property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
+		<!-- Additional Hibernate properties -->
+		<property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+		<property name="hibernate.default_schema">hibernate</property>
+		<property name="hibernate.show_sql">true</property>
+		<property name="hibernate.format_sql">true</property>
+		<property name="hibernate.hbm2ddl.auto">create</property>
+		
+		<mapping class="com.revature.models.DirectorEx"/>
+		<mapping class="com.revature.models.Movie"/>
+		<mapping resource = "Character.hbm.xml"/>
+		<mapping class="com.revature.models.Reimb"/>
+		<mapping class="com.revature.models.User"/>
+		
+	</session-factory>
+
+
+</hibernate-configuration>

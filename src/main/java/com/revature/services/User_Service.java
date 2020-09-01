@@ -7,13 +7,14 @@ import org.apache.logging.log4j.Logger;
 
 import com.revature.daos.IUser_DAO;
 import com.revature.daos.User_DAO;
+import com.revature.daos.User_DAOv2;
 import com.revature.models.LoginDTO;
 import com.revature.models.User;
 
 public class User_Service {
 
 	private static final Logger log = LogManager.getLogger(User_Service.class);
-	private static IUser_DAO uDao = new User_DAO();
+	private static IUser_DAO uDao = new User_DAOv2();
 
 	public List<User> findAll() {
 		log.info("Retrieving all users");

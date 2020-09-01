@@ -33,8 +33,8 @@ public class LoginController {
 					ses.setAttribute("loggedin", true);
 					res.setStatus(200);
 					res.setContentType("text/html");
-					//req.getRequestDispatcher("reimbursements.html").forward(req,res);
-					//res.getWriter().println("Login Successful");
+					// req.getRequestDispatcher("reimbursements.html").forward(req,res);
+					// res.getWriter().println("Login Successful");
 				} else {
 					HttpSession ses = req.getSession(false);
 					if (ses != null) {

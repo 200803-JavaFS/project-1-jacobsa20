@@ -9,13 +9,10 @@ public interface IReimb_DAO<Reimb> {
 
 	public Reimb findById(int id);
 
-	public List<Reimb> findByUser(int userId);
-
 	public List<Reimb> findByStatus(String status);
 
 	public boolean addReimb(Reimb r);
 
 	public boolean updateReimb(Reimb r);
-
 
 }

@@ -1,7 +1,17 @@
 package com.revature.models;
 
-public class User {
+import java.io.Serializable;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
+public class User implements Serializable {
+
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	private String username;
 	private String password;
@@ -9,13 +19,15 @@ public class User {
 	private String last;
 	private String email;
 
-	private int userRoleId;
+	//@ManytoOne(fetch=FetchType.EAGER, cascade= CascadeType.All)
+	//@JoinColumn(name="user")
+	private User userRoleId;
 
 	public User() {
 		super();
 	}
 
-	public User(int id, String username, String password, String first, String last, String email, int userRoleId) {
+	public User(int id, String username, String password, String first, String last, String email, User userRoleId) {
 		super();
 		this.id = id;
 		this.username = username;
@@ -26,7 +38,7 @@ public class User {
 		this.userRoleId = userRoleId;
 	}
 
-	public User(String username, String password, String first, String last, String email, int userRoleId) {
+	public User(String username, String password, String first, String last, String email, User userRoleId) {
 		super();
 		this.username = username;
 		this.password = password;
@@ -84,14 +96,15 @@ public class User {
 		this.email = email;
 	}
 
-	public int getUserRoleId() {
+	public User getUserRoleId() {
 		return userRoleId;
 	}
 
-	public void setUserRoleId(int userRoleId) {
+	public void setUserRoleId(User userRoleId) {
 		this.userRoleId = userRoleId;
 	}
 
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -101,7 +114,7 @@ public class User {
 		result = prime * result + id;
 		result = prime * result + ((last == null) ? 0 : last.hashCode());
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
-		result = prime * result + userRoleId;
+		result = prime * result + ((userRoleId == null) ? 0 : userRoleId.hashCode());
 		result = prime * result + ((username == null) ? 0 : username.hashCode());
 		return result;
 	}
@@ -137,7 +150,10 @@ public class User {
 				return false;
 		} else if (!password.equals(other.password))
 			return false;
-		if (userRoleId != other.userRoleId)
+		if (userRoleId == null) {
+			if (other.userRoleId != null)
+				return false;
+		} else if (!userRoleId.equals(other.userRoleId))
 			return false;
 		if (username == null) {
 			if (other.username != null)
