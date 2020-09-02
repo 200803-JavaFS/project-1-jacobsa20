@@ -1,12 +1,36 @@
 package com.revature.services;
 
+import com.revature.daos.IUser_DAO;
+import com.revature.daos.User_DAO;
 import com.revature.models.LoginDTO;
+import com.revature.models.User;
 
 public class LoginService {
-	
+
+	private static IUser_DAO uDao = new User_DAO();
+
 	public boolean login(LoginDTO l) {
-		if(l.username.equals("agent")&& l.password.equals("12345")) {
-			return true;
+		try {
+			String username = l.username;
+			String password = l.password;
+			User u = uDao.findByUsername(username);
+
+			if (u != null) {
+				StringBuilder sb = new StringBuilder();
+				sb.append(password.hashCode());
+				String hashed = new String(sb);
+
+				if (u.getPassword().equals(hashed)) {
+					return true;
+				} else {
+					System.out.println("Login Credentials are wrong.");
+				}
+			} else {
+				System.out.println("User is not identified.");
+			}
+		} catch (NullPointerException e) {
+			System.out.println("Login Failed.");
+			e.printStackTrace();
 		}
 		return false;
 	}

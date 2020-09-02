@@ -47,18 +47,27 @@ public class Reimb {
 
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "reimb_status_id_fk", referencedColumnName = "reimb_status_id", nullable = false)
-	private Reimb_Status statusId;
+	private Status statusId;
 
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "reimb_type_id_fk", referencedColumnName = "reimb_type_id", nullable = false)
-	private int typeId;
+	private Status typeId;
 
 	public Reimb() {
 		super();
 	}
 
+	public Reimb(double amount, Timestamp submitted, User author, Status status, Status type) {
+		super();
+		this.amount = amount;
+		this.submitted = submitted;
+		this.author = author;
+		this.statusId = status;
+		this.typeId = type;
+	}
+
 	public Reimb(double amount, Timestamp submitted, Timestamp resolved, String description, User author, User resolver,
-			Reimb_Status statusId, int typeId) {
+			Status statusId, Status typeId) {
 		super();
 		this.amount = amount;
 		this.submitted = submitted;
@@ -71,7 +80,7 @@ public class Reimb {
 	}
 
 	public Reimb(int id, double amount, Timestamp submitted, Timestamp resolved, String description, User author,
-			User resolver, Reimb_Status statusId, int typeId) {
+			User resolver, Status statusId, Status typeId) {
 		super();
 		this.id = id;
 		this.amount = amount;
@@ -140,19 +149,19 @@ public class Reimb {
 		this.resolver = resolver;
 	}
 
-	public Reimb_Status getStatusId() {
+	public Status getStatusId() {
 		return statusId;
 	}
 
-	public void setStatusId(Reimb_Status statusId) {
+	public void setStatusId(Status statusId) {
 		this.statusId = statusId;
 	}
 
-	public int getTypeId() {
+	public Status getTypeId() {
 		return typeId;
 	}
 
-	public void setTypeId(int typeId) {
+	public void setTypeId(Status typeId) {
 		this.typeId = typeId;
 	}
 
@@ -170,7 +179,7 @@ public class Reimb {
 		result = prime * result + ((resolver == null) ? 0 : resolver.hashCode());
 		result = prime * result + ((statusId == null) ? 0 : statusId.hashCode());
 		result = prime * result + ((submitted == null) ? 0 : submitted.hashCode());
-		result = prime * result + typeId;
+		result = prime * result + ((typeId == null) ? 0 : typeId.hashCode());
 		return result;
 	}
 

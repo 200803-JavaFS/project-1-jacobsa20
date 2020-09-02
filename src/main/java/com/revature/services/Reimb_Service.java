@@ -5,12 +5,17 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.revature.daos.IReimb_DAO;
+import com.revature.daos.IUser_DAO;
 import com.revature.daos.Reimb_DAO;
+import com.revature.daos.User_DAO;
 import com.revature.models.Reimb;
+import com.revature.models.ReimbDTO;
+import com.revature.models.User;
 
 public class Reimb_Service {
 	private static final Logger log = LogManager.getLogger(Reimb_Service.class);
 	private static IReimb_DAO iRDao = new Reimb_DAO();
+	private static IUser_DAO uDao = new User_DAO();
 
 	public List<Reimb> findAll() {
 		log.info("Retrieving all reimbursements");
@@ -26,9 +31,11 @@ public class Reimb_Service {
 		return iRDao.findByStatus(status);
 	}
 
-	public boolean addReimbursement(Reimb r) {
+	public boolean addReimbursement(ReimbDTO r) {
 		log.info("Adding reimbursements: " + r);
-		return iRDao.addReimb(r);
+		User u = uDao.findByUsername(r.author);
+		Reimb re = new Reimb(r.amount, r.submitted, u, r.status, r.type);
+		return iRDao.addReimb(re);
 	}
 
 	public boolean updateReimb(Reimb r) {

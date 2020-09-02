@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.models.Reimb;
+import com.revature.models.ReimbDTO;
 import com.revature.services.Reimb_Service;
 
 public class Reimb_Controller {
@@ -63,9 +64,9 @@ public class Reimb_Controller {
 
 		String body = new String(s);
 
-		Reimb r = om.readValue(body, Reimb.class);
+		ReimbDTO rDto = om.readValue(body, ReimbDTO.class);
 
-		if (rs.addReimbursement(r)) {
+		if (rs.addReimbursement(rDto)) {
 			res.setStatus(201);
 			res.getWriter().println("Reimbursement Ticket created");
 		} else {
