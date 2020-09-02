@@ -1,28 +1,37 @@
 package com.revature.models;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "ers_user_roles")
 public class User_Role {
 
-	private static final long serialVersionUID = 1L;
-
 	@Id
+	@GeneratedValue(strategy= GenerationType.IDENTITY)
+	@Column(name = "ers_user_role_id")
 	private int id;
 
-	@Column(nullable = false)
-	private String role;
+	@Enumerated(EnumType.STRING)
+	@Column(name = "user_role", nullable = false)
+	private UserType role;
 
 	public User_Role() {
 		super();
 	}
 
-	public User_Role(String role) {
+	public User_Role(UserType role) {
 		super();
 		this.role = role;
 	}
 
-	public User_Role(int id, String role) {
+	public User_Role(int id, UserType role) {
 		super();
 		this.id = id;
 		this.role = role;
@@ -36,11 +45,11 @@ public class User_Role {
 		this.id = id;
 	}
 
-	public String getRole() {
+	public UserType getRole() {
 		return role;
 	}
 
-	public void setRole(String role) {
+	public void setRole(UserType role) {
 		this.role = role;
 	}
 

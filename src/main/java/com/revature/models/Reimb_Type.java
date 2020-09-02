@@ -3,23 +3,32 @@ package com.revature.models;
 import java.io.Serializable;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
-public class Reimb_Type implements Serializable {
-
-	private static final long serialVersionUID = 1L;
+@Entity
+@Table(name="ers_reimbursement_type")
+public class Reimb_Type {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "reimb_type_id")
 	private int typeID;
 
-	@Column(nullable = false)
-	private String type;
+	@Enumerated(EnumType.STRING)
+	@Column(name = "reimb_type",nullable = false)
+	private Status type;
 	
 	public Reimb_Type() {
 		super();
 	}
 
-	public Reimb_Type(int typeID, String type) {
+	public Reimb_Type(int typeID, Status type) {
 		super();
 		this.typeID = typeID;
 		this.type = type;
@@ -33,11 +42,11 @@ public class Reimb_Type implements Serializable {
 		this.typeID = typeID;
 	}
 
-	public String getType() {
+	public Status getType() {
 		return type;
 	}
 
-	public void setType(String type) {
+	public void setType(Status type) {
 		this.type = type;
 	}
 

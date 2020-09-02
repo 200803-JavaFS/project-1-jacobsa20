@@ -1,6 +1,7 @@
 package com.revature.models;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -11,34 +12,39 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
-public class User implements Serializable {
-
-	private static final long serialVersionUID = 1L;
+@Table(name = "ers_users")
+public class User {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "ers_users_id")
 	private int id;
 
-	@Column(nullable = false, unique = true)
+	@Column(name = "ers_username", nullable = false, unique = true)
 	private String username;
 
-	@Column(nullable = false)
+	@Column(name = "ers_password", nullable = false)
 	private String password;
 
-	@Column(nullable = false)
+	@Column(name = "user_first_name", nullable = false)
 	private String first;
 
-	@Column(nullable = false)
+	@Column(name = "user_last_name", nullable = false)
 	private String last;
 
-	@Column(nullable = false, unique = true)
+	@Column(name = "user_email", nullable = false, unique = true)
 	private String email;
 
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name = "user")
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinColumn(name = "user_role_id", referencedColumnName = "ers_user_role_id", nullable = false)
 	private User_Role userRoleId;
+
+	@OneToMany(mappedBy = "author", fetch = FetchType.LAZY)
+	private List<Reimb> list;
 
 	public User() {
 		super();

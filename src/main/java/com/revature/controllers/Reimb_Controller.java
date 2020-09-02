@@ -23,11 +23,12 @@ public class Reimb_Controller {
 		if (r == null) {
 			res.setStatus(204);
 			return;
-		}
+		} else {
 
-		res.setStatus(200);
-		String json = om.writeValueAsString(r);
-		res.getWriter().println(json);
+			res.setStatus(200);
+			String json = om.writeValueAsString(r);
+			res.getWriter().println(json);
+		}
 	}
 
 	public void getAllTickets(HttpServletResponse res) throws IOException {

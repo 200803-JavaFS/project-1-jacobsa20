@@ -11,14 +11,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.revature.controllers.LoginController;
 import com.revature.controllers.Reimb_Controller;
-import com.revature.controllers.User_Controller;
 
 public class MasterServlet extends HttpServlet {
 
-	private static User_Controller uc = new User_Controller();
 	private static Reimb_Controller rc = new Reimb_Controller();
+	private static LoginController lc = new LoginController();
 	private static final long serialVersionUID = 1L;
-	
+
 	public MasterServlet() {
 		super();
 	}
@@ -39,9 +38,27 @@ public class MasterServlet extends HttpServlet {
 			case "login":
 				if (req.getMethod().equals("POST")) {
 					System.out.println("login");
-					uc.login(req, res);
+					lc.login(req, res);
 					break;
 				}
+			case "reimbursement":
+				if (req.getSession(false) != null && (boolean) req.getSession().getAttribute("logged in")) {
+					if (req.getMethod().equals("GET")) {
+						if (portions.length == 2) {
+							int id = Integer.parseInt(portions[1]);
+							rc.getReimbursement(res, id);
+						} else if (portions.length == 1) {
+							rc.addTicket(req, res);
+						}
+					}
+				} else {
+					res.setStatus(403);
+					res.getWriter().println("You must be logged in first.");
+				}
+				break;
+			case "logout":
+				lc.logout(req, res);
+				break;
 
 			}
 
@@ -55,12 +72,12 @@ public class MasterServlet extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-		res.setContentType("application/json");
-		res.setStatus(404);
-		
-		LoginController lc= new LoginController();
-		lc.login(req,res);
-		
+		//res.setContentType("application/json");
+//		res.setStatus(404);
+//
+//		LoginController lc = new LoginController();
+//		lc.login(req, res);
+
 		doGet(req, res);
 	}
 

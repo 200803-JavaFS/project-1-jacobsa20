@@ -17,15 +17,15 @@ public class User_DAO implements IUser_DAO {
 	@Override
 	public User findById(int id) {
 		Session ses = HibernateUtil.getSession();
-
 		User u = ses.get(User.class, id);
 		return u;
 	}
 
 	@Override
 	public User findByUsername(String username) {
-		// TODO Auto-generated method stub
-		return null;
+		Session ses = HibernateUtil.getSession();
+		User u = ses.createQuery("From User WHERE username = " + username + ".", User.class).uniqueResult();
+		return u;
 	}
 
 }

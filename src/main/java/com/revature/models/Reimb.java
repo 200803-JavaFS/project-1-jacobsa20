@@ -1,6 +1,7 @@
 package com.revature.models;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -11,46 +12,52 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity
-public class Reimb implements Serializable {
+@Table(name = "ers_reimbursement")
+public class Reimb {
 
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "reimb_id", nullable = false)
 	private int id;
 
-	@Column(nullable = false)
+	@Column(name = "reimb_amount", nullable = false)
 	private double amount;
 
-	@Column(nullable = false)
-	private String submitted;
+	@Column(name = "reimb_submitted", nullable = false)
+	private Timestamp submitted;
 
-	private String resolved;
+	@Column(name = "reimb_resolved")
+	private Timestamp resolved;
+
+	@Column(name = "reimb_description")
 	private String description;
 
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name = "author")
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinColumn(name = "reimb_author", referencedColumnName = "ers_users_id", nullable = false)
 	private User author;
 
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name = "resolver")
-	private int resolver;
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinColumn(name = "reimb_resolver", referencedColumnName = "ers_users_id")
+	private User resolver;
 
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name = "status_id")
+	@JoinColumn(name = "reimb_status_id_fk", referencedColumnName = "reimb_status_id", nullable = false)
 	private Reimb_Status statusId;
 
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name = "type_id")
+	@JoinColumn(name = "reimb_type_id_fk", referencedColumnName = "reimb_type_id", nullable = false)
 	private int typeId;
 
 	public Reimb() {
 		super();
 	}
 
-	public Reimb(double amount, String submitted, String resolved, String description, User author, int resolver,
+	public Reimb(double amount, Timestamp submitted, Timestamp resolved, String description, User author, User resolver,
 			Reimb_Status statusId, int typeId) {
 		super();
 		this.amount = amount;
@@ -63,8 +70,8 @@ public class Reimb implements Serializable {
 		this.typeId = typeId;
 	}
 
-	public Reimb(int id, double amount, String submitted, String resolved, String description, User author,
-			int resolver, Reimb_Status statusId, int typeId) {
+	public Reimb(int id, double amount, Timestamp submitted, Timestamp resolved, String description, User author,
+			User resolver, Reimb_Status statusId, int typeId) {
 		super();
 		this.id = id;
 		this.amount = amount;
@@ -93,19 +100,19 @@ public class Reimb implements Serializable {
 		this.amount = amount;
 	}
 
-	public String getSubmitted() {
+	public Timestamp getSubmitted() {
 		return submitted;
 	}
 
-	public void setSubmitted(String submitted) {
+	public void setSubmitted(Timestamp submitted) {
 		this.submitted = submitted;
 	}
 
-	public String getResolved() {
+	public Timestamp getResolved() {
 		return resolved;
 	}
 
-	public void setResolved(String resolved) {
+	public void setResolved(Timestamp resolved) {
 		this.resolved = resolved;
 	}
 
@@ -125,11 +132,11 @@ public class Reimb implements Serializable {
 		this.author = author;
 	}
 
-	public int getResolver() {
+	public User getResolver() {
 		return resolver;
 	}
 
-	public void setResolver(int resolver) {
+	public void setResolver(User resolver) {
 		this.resolver = resolver;
 	}
 
@@ -160,7 +167,7 @@ public class Reimb implements Serializable {
 		result = prime * result + ((description == null) ? 0 : description.hashCode());
 		result = prime * result + id;
 		result = prime * result + ((resolved == null) ? 0 : resolved.hashCode());
-		result = prime * result + resolver;
+		result = prime * result + ((resolver == null) ? 0 : resolver.hashCode());
 		result = prime * result + ((statusId == null) ? 0 : statusId.hashCode());
 		result = prime * result + ((submitted == null) ? 0 : submitted.hashCode());
 		result = prime * result + typeId;

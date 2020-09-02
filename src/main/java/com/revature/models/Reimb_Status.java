@@ -1,27 +1,39 @@
 package com.revature.models;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "ers_reimbursement_status")
 public class Reimb_Status {
 
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "reimb_status_id")
 	private int id;
-	@Column(nullable = false)
-	private String status;
+
+	@Column(name = "reimb_status")
+	@Enumerated(EnumType.STRING)
+	private Status status;
 
 	public Reimb_Status() {
 		super();
 	}
 
-	public Reimb_Status(String status) {
+	public Reimb_Status(Status status) {
 		super();
 		this.status = status;
 	}
 
-	public Reimb_Status(int id, String status) {
+	public Reimb_Status(int id, Status status) {
 		super();
 		this.id = id;
 		this.status = status;
@@ -35,11 +47,11 @@ public class Reimb_Status {
 		this.id = id;
 	}
 
-	public String getStatus() {
+	public Status getStatus() {
 		return status;
 	}
 
-	public void setStatus(String status) {
+	public void setStatus(Status status) {
 		this.status = status;
 	}
 
