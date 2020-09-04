@@ -29,7 +29,6 @@ public class User_Role {
 		this.role = role;
 	}
 
-	//fix this!!!
 	
 	public User_Role(int id, String role) {
 		super();

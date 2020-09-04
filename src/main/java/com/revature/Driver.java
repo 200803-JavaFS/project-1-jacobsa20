@@ -36,26 +36,26 @@ public class Driver {
 		StringBuilder sb1 = new StringBuilder();
 		sb1.append(p1.hashCode());
 		String p1HashCode = new String(sb1);
-		User u1 = new User("P.Halpert123", p1HashCode, "Pamela", "Halpert", "p.halpert@dm.com", null, null);
+		User u1 = new User("P.Halpert123", p1HashCode, "Pamela", "Halpert", "p.halpert@dm.com", uRole.getRole(), null);
 
 		String p2 = "1234";
 		StringBuilder sb2 = new StringBuilder();
 		sb2.append(p2.hashCode());
 		System.out.println(p2.hashCode());
 		String p2HashCode = new String(sb2);
-		User u2 = new User("WorldsBestBo$$", p2HashCode, "Michael", "Scott", "m.scott@dm.com", null, null);
+		User u2 = new User("WorldsBestBo$$", p2HashCode, "Michael", "Scott", "m.scott@dm.com", uRole.getRole(), null);
 
 		String p3 = "SchruteFarms4";
 		StringBuilder sb3 = new StringBuilder();
 		sb3.append(p3.hashCode());
 		String p3HashCode = new String(sb3);
-		User u3 = new User("AssistantRgMgr", p3HashCode, "Dwight", "Schrute", "d.schrute@dm.com", null, null);
+		User u3 = new User("AssistantRgMgr", p3HashCode, "Dwight", "Schrute", "d.schrute@dm.com", uRole.getRole(), null);
 
 		String p4 = "B!g_Tuna";
 		StringBuilder sb4 = new StringBuilder();
 		sb3.append(p4.hashCode());
 		String p4HashCode = new String(sb4);
-		User u4 = new User("Jimothy_Hal246", p4HashCode, "Jim", "Halpert", "j.halpert@dm.com", null, null);
+		User u4 = new User("Jimothy_Hal246", p4HashCode, "Jim", "Halpert", "j.halpert@dm.com", uRole.getRole(), null);
 
 		uDao.addUser(u1);
 		uDao.addUser(u2);

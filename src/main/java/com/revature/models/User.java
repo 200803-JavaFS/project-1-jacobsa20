@@ -40,7 +40,7 @@ public class User {
 
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "user_role_id", referencedColumnName = "ers_user_role_id", nullable = false)
-	private User_Role userRoleId;
+	private String userRoleId;
 
 	@OneToMany(mappedBy = "author", fetch = FetchType.LAZY)
 	private List<Reimb> list;
@@ -50,7 +50,7 @@ public class User {
 	}
 
 	public User(int id, String username, String password, String first, String last, String email,
-			com.revature.models.User_Role user_Role, List<Reimb> list) {
+			String user_Role, List<Reimb> list) {
 		super();
 		this.id = id;
 		this.username = username;
@@ -62,7 +62,7 @@ public class User {
 		this.list= list;
 	}
 
-	public User(String username, String password, String first, String last, String email, com.revature.models.User_Role user_Role, List<Reimb> list) {
+	public User(String username, String password, String first, String last, String email, String user_Role, List<Reimb> list) {
 		super();
 		this.username = username;
 		this.password = password;
@@ -121,11 +121,11 @@ public class User {
 		this.email = email;
 	}
 
-	public User_Role getUserRoleId() {
+	public String getUserRoleId() {
 		return userRoleId;
 	}
 
-	public void setUserRoleId(User_Role userRoleId) {
+	public void setUserRoleId(String userRoleId) {
 		this.userRoleId = userRoleId;
 	}
 	
