@@ -2,6 +2,7 @@ package com.revature.daos;
 
 import java.util.List;
 import com.revature.models.Reimb;
+import com.revature.models.User;
 
 public interface IReimb_DAO<Reimb> {
 
@@ -14,5 +15,7 @@ public interface IReimb_DAO<Reimb> {
 	public boolean addReimb(Reimb r);
 
 	public boolean updateReimb(Reimb r);
+	
+	public List<Reimb> findByUser(User u);
 
 }

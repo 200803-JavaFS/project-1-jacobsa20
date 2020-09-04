@@ -23,7 +23,6 @@ public class Reimb_Controller {
 
 		if (r == null) {
 			res.setStatus(204);
-			return;
 		} else {
 
 			res.setStatus(200);

@@ -1,6 +1,5 @@
 package com.revature.models;
 
-import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -51,7 +50,7 @@ public class User {
 	}
 
 	public User(int id, String username, String password, String first, String last, String email,
-			User_Role userRoleId) {
+			com.revature.models.User_Role user_Role, List<Reimb> list) {
 		super();
 		this.id = id;
 		this.username = username;
@@ -60,16 +59,18 @@ public class User {
 		this.last = last;
 		this.email = email;
 		this.userRoleId = userRoleId;
+		this.list= list;
 	}
 
-	public User(String username, String password, String first, String last, String email, User_Role userRoleId) {
+	public User(String username, String password, String first, String last, String email, com.revature.models.User_Role user_Role, List<Reimb> list) {
 		super();
 		this.username = username;
 		this.password = password;
 		this.first = first;
 		this.last = last;
 		this.email = email;
-		this.userRoleId = userRoleId;
+		this.userRoleId = user_Role;
+		this.list = list;
 	}
 
 	public int getId() {
@@ -126,6 +127,14 @@ public class User {
 
 	public void setUserRoleId(User_Role userRoleId) {
 		this.userRoleId = userRoleId;
+	}
+	
+	public List<Reimb> getList(){
+		return list;
+	}
+	
+	public void setList(List<Reimb> list) {
+		this.list= list;
 	}
 
 	@Override

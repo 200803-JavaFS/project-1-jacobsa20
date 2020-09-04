@@ -36,11 +36,8 @@ public class MasterServlet extends HttpServlet {
 		try {
 			switch (portions[0]) {
 			case "login":
-				if (req.getMethod().equals("POST")) {
-					System.out.println("login");
-					lc.login(req, res);
-					break;
-				}
+				lc.login(req, res);
+				break;
 			case "reimbursement":
 				if (req.getSession(false) != null && (boolean) req.getSession().getAttribute("logged in")) {
 					if (req.getMethod().equals("GET")) {
@@ -72,7 +69,7 @@ public class MasterServlet extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-		//res.setContentType("application/json");
+		// res.setContentType("application/json");
 //		res.setStatus(404);
 //
 //		LoginController lc = new LoginController();

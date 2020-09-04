@@ -34,7 +34,7 @@ public class Reimb_Service {
 	public boolean addReimbursement(ReimbDTO r) {
 		log.info("Adding reimbursements: " + r);
 		User u = uDao.findByUsername(r.author);
-		Reimb re = new Reimb(r.amount, r.submitted, u, r.status, r.type);
+		Reimb re = new Reimb();
 		return iRDao.addReimb(re);
 	}
 

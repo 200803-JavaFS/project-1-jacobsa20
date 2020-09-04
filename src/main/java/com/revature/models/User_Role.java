@@ -2,8 +2,6 @@ package com.revature.models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -18,20 +16,19 @@ public class User_Role {
 	@Column(name = "ers_user_role_id")
 	private int id;
 
-	@Enumerated(EnumType.STRING)
 	@Column(name = "user_role", nullable = false)
-	private UserType role;
+	private Reimb_Type role;
 
 	public User_Role() {
 		super();
 	}
 
-	public User_Role(UserType role) {
+	public User_Role(Reimb_Type role) {
 		super();
 		this.role = role;
 	}
 
-	public User_Role(int id, UserType role) {
+	public User_Role(int id, Reimb_Type role) {
 		super();
 		this.id = id;
 		this.role = role;
@@ -45,11 +42,11 @@ public class User_Role {
 		this.id = id;
 	}
 
-	public UserType getRole() {
+	public Reimb_Type getRole() {
 		return role;
 	}
 
-	public void setRole(UserType role) {
+	public void setRole(Reimb_Type role) {
 		this.role = role;
 	}
 

@@ -21,19 +21,18 @@ public class Reimb_Status {
 	private int id;
 
 	@Column(name = "reimb_status")
-	@Enumerated(EnumType.STRING)
-	private Status status;
+	private String status;
 
 	public Reimb_Status() {
 		super();
 	}
 
-	public Reimb_Status(Status status) {
+	public Reimb_Status(String status) {
 		super();
 		this.status = status;
 	}
 
-	public Reimb_Status(int id, Status status) {
+	public Reimb_Status(int id, String status) {
 		super();
 		this.id = id;
 		this.status = status;
@@ -47,11 +46,11 @@ public class Reimb_Status {
 		this.id = id;
 	}
 
-	public Status getStatus() {
+	public String getStatus() {
 		return status;
 	}
 
-	public void setStatus(Status status) {
+	public void setStatus(String status) {
 		this.status = status;
 	}
 

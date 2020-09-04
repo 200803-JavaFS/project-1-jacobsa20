@@ -6,6 +6,7 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 
 import com.revature.models.Reimb;
+import com.revature.models.User;
 import com.revature.utils.HibernateUtil;
 
 public class Reimb_DAO implements IReimb_DAO {
@@ -76,6 +77,17 @@ public class Reimb_DAO implements IReimb_DAO {
 		}
 
 		return false;
+	}
+
+	public Object findByType(int i) {
+		
+		return null;
+	}
+
+	@Override
+	public List findByUser(User u) {
+
+		return null;
 	}
 
 }

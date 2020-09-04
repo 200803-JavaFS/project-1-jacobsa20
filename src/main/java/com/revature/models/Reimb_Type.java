@@ -12,7 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="ers_reimbursement_type")
+@Table(name = "ers_reimbursement_type")
 public class Reimb_Type {
 
 	@Id
@@ -20,17 +20,21 @@ public class Reimb_Type {
 	@Column(name = "reimb_type_id")
 	private int typeID;
 
-	@Enumerated(EnumType.STRING)
-	@Column(name = "reimb_type",nullable = false)
-	private Status type;
-	
+	@Column(name = "reimb_type", nullable = false)
+	private String type;
+
 	public Reimb_Type() {
 		super();
 	}
 
-	public Reimb_Type(int typeID, Status type) {
+	public Reimb_Type(int typeID, String type) {
 		super();
 		this.typeID = typeID;
+		this.type = type;
+	}
+
+	public Reimb_Type(String type) {
+		super();
 		this.type = type;
 	}
 
@@ -42,11 +46,11 @@ public class Reimb_Type {
 		this.typeID = typeID;
 	}
 
-	public Status getType() {
+	public String getType() {
 		return type;
 	}
 
-	public void setType(Status type) {
+	public void setType(String type) {
 		this.type = type;
 	}
 

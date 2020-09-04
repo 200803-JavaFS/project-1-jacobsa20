@@ -1,7 +1,7 @@
 package com.revature.models;
 
 import java.io.Serializable;
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -29,10 +29,10 @@ public class Reimb {
 	private double amount;
 
 	@Column(name = "reimb_submitted", nullable = false)
-	private Timestamp submitted;
+	private LocalDateTime submitted;
 
 	@Column(name = "reimb_resolved")
-	private Timestamp resolved;
+	private LocalDateTime resolved;
 
 	@Column(name = "reimb_description")
 	private String description;
@@ -47,17 +47,17 @@ public class Reimb {
 
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "reimb_status_id_fk", referencedColumnName = "reimb_status_id", nullable = false)
-	private Status statusId;
+	private String statusId;
 
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "reimb_type_id_fk", referencedColumnName = "reimb_type_id", nullable = false)
-	private Status typeId;
+	private String typeId;
 
 	public Reimb() {
 		super();
 	}
 
-	public Reimb(double amount, Timestamp submitted, User author, Status status, Status type) {
+	public Reimb(double amount, LocalDateTime submitted, User author, String status, String type) {
 		super();
 		this.amount = amount;
 		this.submitted = submitted;
@@ -66,8 +66,8 @@ public class Reimb {
 		this.typeId = type;
 	}
 
-	public Reimb(double amount, Timestamp submitted, Timestamp resolved, String description, User author, User resolver,
-			Status statusId, Status typeId) {
+	public Reimb(double amount, LocalDateTime submitted, LocalDateTime resolved, String description, User author,
+			User resolver, String statusId, String typeId) {
 		super();
 		this.amount = amount;
 		this.submitted = submitted;
@@ -79,8 +79,8 @@ public class Reimb {
 		this.typeId = typeId;
 	}
 
-	public Reimb(int id, double amount, Timestamp submitted, Timestamp resolved, String description, User author,
-			User resolver, Status statusId, Status typeId) {
+	public Reimb(int id, double amount, LocalDateTime submitted, LocalDateTime resolved, String description, User author,
+			User resolver, String statusId, String typeId) {
 		super();
 		this.id = id;
 		this.amount = amount;
@@ -109,19 +109,19 @@ public class Reimb {
 		this.amount = amount;
 	}
 
-	public Timestamp getSubmitted() {
+	public LocalDateTime getSubmitted() {
 		return submitted;
 	}
 
-	public void setSubmitted(Timestamp submitted) {
+	public void setSubmitted(LocalDateTime submitted) {
 		this.submitted = submitted;
 	}
 
-	public Timestamp getResolved() {
+	public LocalDateTime getResolved() {
 		return resolved;
 	}
 
-	public void setResolved(Timestamp resolved) {
+	public void setResolved(LocalDateTime resolved) {
 		this.resolved = resolved;
 	}
 
@@ -149,19 +149,19 @@ public class Reimb {
 		this.resolver = resolver;
 	}
 
-	public Status getStatusId() {
+	public String getStatusId() {
 		return statusId;
 	}
 
-	public void setStatusId(Status statusId) {
+	public void setStatusId(String statusId) {
 		this.statusId = statusId;
 	}
 
-	public Status getTypeId() {
+	public String getTypeId() {
 		return typeId;
 	}
 
-	public void setTypeId(Status typeId) {
+	public void setTypeId(String typeId) {
 		this.typeId = typeId;
 	}
 

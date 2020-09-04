@@ -11,26 +11,17 @@ public class ReimbDTO {
 	public String receipt;
 	public String author;
 	public String resolver;
-	public Status status;
-	public Status type;
+	public String status;
+	public String type;
 
 	public ReimbDTO() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
-	public ReimbDTO(double amount, Timestamp submitted, String author, Status status, Status type) {
+	public ReimbDTO(int id, double amount, Timestamp submitted, Timestamp resolved, String description, String receipt,
+			String author, String resolver, String status, String type) {
 		super();
-		this.amount = amount;
-		this.submitted = submitted;
-		this.author = author;
-		this.status = status;
-		this.type = type;
-	}
-
-	public ReimbDTO(double amount, Timestamp submitted, Timestamp resolved, String description, String receipt,
-			String author, String resolver, Status status, Status type) {
-		super();
+		this.id = id;
 		this.amount = amount;
 		this.submitted = submitted;
 		this.resolved = resolved;
@@ -42,10 +33,9 @@ public class ReimbDTO {
 		this.type = type;
 	}
 
-	public ReimbDTO(int id, double amount, Timestamp submitted, Timestamp resolved, String description, String receipt,
-			String author, String resolver, Status status, Status type) {
+	public ReimbDTO(double amount, Timestamp submitted, Timestamp resolved, String description, String receipt,
+			String author, String resolver, String status, String type) {
 		super();
-		this.id = id;
 		this.amount = amount;
 		this.submitted = submitted;
 		this.resolved = resolved;
@@ -138,4 +128,86 @@ public class ReimbDTO {
 				+ ", description=" + description + ", receipt=" + receipt + ", author=" + author + ", resolver="
 				+ resolver + ", status=" + status + ", type=" + type + "]";
 	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public double getAmount() {
+		return amount;
+	}
+
+	public void setAmount(double amount) {
+		this.amount = amount;
+	}
+
+	public Timestamp getSubmitted() {
+		return submitted;
+	}
+
+	public void setSubmitted(Timestamp submitted) {
+		this.submitted = submitted;
+	}
+
+	public Timestamp getResolved() {
+		return resolved;
+	}
+
+	public void setResolved(Timestamp resolved) {
+		this.resolved = resolved;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getReceipt() {
+		return receipt;
+	}
+
+	public void setReceipt(String receipt) {
+		this.receipt = receipt;
+	}
+
+	public String getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(String author) {
+		this.author = author;
+	}
+
+	public String getResolver() {
+		return resolver;
+	}
+
+	public void setResolver(String resolver) {
+		this.resolver = resolver;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	
 }

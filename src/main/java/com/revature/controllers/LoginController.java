@@ -31,6 +31,7 @@ public class LoginController {
 			StringBuilder sb = new StringBuilder();
 
 			String line = reader.readLine();
+			
 			while (line != null) {
 				sb.append(line);
 				line = reader.readLine();
@@ -38,6 +39,7 @@ public class LoginController {
 			}
 			String body = new String(sb);
 			LoginDTO l = om.readValue(body, LoginDTO.class);
+			
 			if (ls.login(l)) {
 				HttpSession ses = req.getSession();
 				ses.setAttribute("user", l);
