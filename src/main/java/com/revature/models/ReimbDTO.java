@@ -1,12 +1,13 @@
 package com.revature.models;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 public class ReimbDTO {
 	public int id;
 	public double amount;
-	public Timestamp submitted;
-	public Timestamp resolved;
+	public LocalDateTime submitted;
+	public LocalDateTime resolved;
 	public String description;
 	public String receipt;
 	public String author;
@@ -18,8 +19,8 @@ public class ReimbDTO {
 		super();
 	}
 
-	public ReimbDTO(int id, double amount, Timestamp submitted, Timestamp resolved, String description, String receipt,
-			String author, String resolver, String status, String type) {
+	public ReimbDTO(int id, double amount, LocalDateTime submitted, LocalDateTime resolved, String description,
+			String receipt, String author, String resolver, String status, String type) {
 		super();
 		this.id = id;
 		this.amount = amount;
@@ -33,7 +34,7 @@ public class ReimbDTO {
 		this.type = type;
 	}
 
-	public ReimbDTO(double amount, Timestamp submitted, Timestamp resolved, String description, String receipt,
+	public ReimbDTO(double amount, LocalDateTime submitted, LocalDateTime resolved, String description, String receipt,
 			String author, String resolver, String status, String type) {
 		super();
 		this.amount = amount;
@@ -129,85 +130,4 @@ public class ReimbDTO {
 				+ resolver + ", status=" + status + ", type=" + type + "]";
 	}
 
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public double getAmount() {
-		return amount;
-	}
-
-	public void setAmount(double amount) {
-		this.amount = amount;
-	}
-
-	public Timestamp getSubmitted() {
-		return submitted;
-	}
-
-	public void setSubmitted(Timestamp submitted) {
-		this.submitted = submitted;
-	}
-
-	public Timestamp getResolved() {
-		return resolved;
-	}
-
-	public void setResolved(Timestamp resolved) {
-		this.resolved = resolved;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	public String getReceipt() {
-		return receipt;
-	}
-
-	public void setReceipt(String receipt) {
-		this.receipt = receipt;
-	}
-
-	public String getAuthor() {
-		return author;
-	}
-
-	public void setAuthor(String author) {
-		this.author = author;
-	}
-
-	public String getResolver() {
-		return resolver;
-	}
-
-	public void setResolver(String resolver) {
-		this.resolver = resolver;
-	}
-
-	public String getStatus() {
-		return status;
-	}
-
-	public void setStatus(String status) {
-		this.status = status;
-	}
-
-	public String getType() {
-		return type;
-	}
-
-	public void setType(String type) {
-		this.type = type;
-	}
-
-	
 }

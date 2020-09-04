@@ -1,6 +1,5 @@
 package com.revature.models;
 
-import java.io.Serializable;
 import java.time.LocalDateTime;
 
 import javax.persistence.CascadeType;
@@ -47,17 +46,17 @@ public class Reimb {
 
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "reimb_status_id_fk", referencedColumnName = "reimb_status_id", nullable = false)
-	private String statusId;
+	private Reimb_Status statusId;
 
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "reimb_type_id_fk", referencedColumnName = "reimb_type_id", nullable = false)
-	private String typeId;
+	private Reimb_Type typeId;
 
 	public Reimb() {
 		super();
 	}
 
-	public Reimb(double amount, LocalDateTime submitted, User author, String status, String type) {
+	public Reimb(double amount, LocalDateTime submitted, User author, Reimb_Status status, Reimb_Type type) {
 		super();
 		this.amount = amount;
 		this.submitted = submitted;
@@ -67,7 +66,7 @@ public class Reimb {
 	}
 
 	public Reimb(double amount, LocalDateTime submitted, LocalDateTime resolved, String description, User author,
-			User resolver, String statusId, String typeId) {
+			User resolver, Reimb_Status statusId, Reimb_Type typeId) {
 		super();
 		this.amount = amount;
 		this.submitted = submitted;
@@ -79,8 +78,8 @@ public class Reimb {
 		this.typeId = typeId;
 	}
 
-	public Reimb(int id, double amount, LocalDateTime submitted, LocalDateTime resolved, String description, User author,
-			User resolver, String statusId, String typeId) {
+	public Reimb(int id, double amount, LocalDateTime submitted, LocalDateTime resolved, String description,
+			User author, User resolver, Reimb_Status statusId, Reimb_Type typeId) {
 		super();
 		this.id = id;
 		this.amount = amount;
@@ -149,19 +148,19 @@ public class Reimb {
 		this.resolver = resolver;
 	}
 
-	public String getStatusId() {
+	public Reimb_Status getStatusId() {
 		return statusId;
 	}
 
-	public void setStatusId(String statusId) {
+	public void setStatusId(Reimb_Status statusId) {
 		this.statusId = statusId;
 	}
 
-	public String getTypeId() {
+	public Reimb_Type getTypeId() {
 		return typeId;
 	}
 
-	public void setTypeId(String typeId) {
+	public void setTypeId(Reimb_Type typeId) {
 		this.typeId = typeId;
 	}
 

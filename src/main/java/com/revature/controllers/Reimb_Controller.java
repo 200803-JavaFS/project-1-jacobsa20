@@ -87,7 +87,7 @@ public class Reimb_Controller {
 
 		String body = new String(s);
 
-		Reimb r = om.readValue(body, Reimb.class);
+		ReimbDTO r = om.readValue(body, ReimbDTO.class);
 
 		if (rs.updateReimb(r)) {
 			res.setStatus(202);

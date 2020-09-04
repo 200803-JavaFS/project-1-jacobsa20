@@ -7,13 +7,13 @@ import com.revature.models.User;
 
 public class LoginService {
 
-	private static IUser_DAO uDao = new User_DAO();
+	private static User_Service us = new User_Service();
 
 	public boolean login(LoginDTO l) {
 		try {
 			String username = l.username;
 			String password = l.password;
-			User u = uDao.findByUsername(username);
+			User u = us.findByUsername(username);
 
 			if (u != null) {
 				StringBuilder sb = new StringBuilder();
