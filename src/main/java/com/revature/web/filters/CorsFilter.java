@@ -1,4 +1,4 @@
-package com.revature.web.filter;
+package com.revature.web.filters;
 
 import java.io.IOException;
 

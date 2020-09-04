@@ -26,7 +26,7 @@ public class User_DAO implements IUser_DAO {
 	@Override
 	public User findByUsername(String username) {
 		Session ses = HibernateUtil.getSession();
-		User u = ses.createQuery("From User WHERE username = " + username + ".", User.class).uniqueResult();
+		User u = ses.createQuery("FROM ers_users WHERE username = " + username + ".", User.class).uniqueResult();
 		return u;
 	}
 
@@ -48,7 +48,7 @@ public class User_DAO implements IUser_DAO {
 	@Override
 	public List<User> findAll() {
 		Session ses = HibernateUtil.getSession();
-		List<User> list = ses.createQuery("From User").list();
+		List<User> list = ses.createQuery("FROM ers_users").list();
 		return list;
 	}
 

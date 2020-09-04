@@ -22,8 +22,8 @@
 		
 		<mapping class="com.revature.models.Reimb"/>
 		<mapping class="com.revature.models.User"/>
-		<mapping class="com.revature.models.Status"/>
-		<mapping class="com.revature.models.Type"/>
+		<mapping class="com.revature.models.Reimb_Status"/>
+		<mapping class="com.revature.models.Reimb_Type"/>
 		<mapping class="com.revature.models.User_Role"/>
 		
 	</session-factory>
