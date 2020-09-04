@@ -16,19 +16,22 @@ public class User_Role {
 	@Column(name = "ers_user_role_id")
 	private int id;
 
+	//private String role
 	@Column(name = "user_role", nullable = false)
-	private Reimb_Type role;
+	private String role;
 
 	public User_Role() {
 		super();
 	}
 
-	public User_Role(Reimb_Type role) {
+	public User_Role(String role) {
 		super();
 		this.role = role;
 	}
 
-	public User_Role(int id, Reimb_Type role) {
+	//fix this!!!
+	
+	public User_Role(int id, String role) {
 		super();
 		this.id = id;
 		this.role = role;
@@ -42,11 +45,11 @@ public class User_Role {
 		this.id = id;
 	}
 
-	public Reimb_Type getRole() {
+	public String getRole() {
 		return role;
 	}
 
-	public void setRole(Reimb_Type role) {
+	public void setRole(String role) {
 		this.role = role;
 	}
 

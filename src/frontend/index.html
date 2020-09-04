@@ -1,18 +1,44 @@
-<!DOCTYPE html>
-<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Dunder Mifflin Reimbursement System</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 </head>
 <body>
-   <div>
-        The button below will call a function in my JavaScript and log the message. <br>
-        <label>What is your message?</label>
-        <input type="text" id="messageInput" placeholder="Enter your message!" />
+    <div class="container" id="fullcontainer">
+        <div class="row" id="login-row">
+        <h1>Dunder Mifflin Reimbursement System</h1>
+            <h3 class="col-lg-12">Please Enter Your Username and Password:</h3>
+            <input class="col-sm-4 form-control" id="username" type="text" placeholder="USERNAME">
+            <input class="col-sm-4 form-control" id="password" type="password" placeholder="PASSWORD">
+            <button id="loginbtn" class="btn btn-success">Login</button>
+        </div>
+<br>
+<br>
+<div class ="row" id= "info"></div>
+        <div class="row" id="table-row">
+            <table class="table-hover table-bordered" id="avtable">
+                <thead>
+                    <tr class ="info">
+                        <th>ID</th>
+                        <th>Amount</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Time Submitted</th>
+                        <th>Time Resolved</th>
+                        <th>Type of Reimbursement</th>
+                        <th>Reimbursement Description</th>
+                    </tr>
+                </thead>
+                <tbody id="avbody">
+                </tbody>
+            </table>
+        </div>
+
         <br>
-        <button onclick="logMessageFromInput()">Click Here</button>
-   </div>
-   <script src="HelloAJAX.js"></script> 
+        <br>
+    </div>
+    
+    <script src="index.js"></script> 
 </body>
 </html>
