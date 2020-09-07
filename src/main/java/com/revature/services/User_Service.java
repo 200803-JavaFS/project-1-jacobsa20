@@ -35,11 +35,16 @@ public class User_Service {
 		return uDao.addUser(u);
 	}
 
-	public boolean login(LoginDTO l) {
-		User u = uDao.findByUsername(l.username);
-		if (u.getPassword().equals(l.password)) {
-			return true;
-		}
-		return false;
+//	public boolean login(LoginDTO l) {
+//		User u = uDao.findByUsername(l.username);
+//		if (u.getPassword().equals(l.password)) {
+//			return true;
+//		}
+//		return false;
+//	}
+
+	public User findByUserPassword(String username, String hashed) {
+		log.info("Finding user with password");
+		return uDao.findByEmployee(username, hashed);
 	}
 }

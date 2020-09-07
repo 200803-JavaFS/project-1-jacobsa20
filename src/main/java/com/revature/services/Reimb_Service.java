@@ -42,25 +42,41 @@ public class Reimb_Service {
 		log.info("Finding Reimb by Status");
 		return iRDao.findByStatus(status);
 	}
-
-	public boolean addReimbursement(ReimbDTO r) {
-		log.info("Adding reimbursements: " + r);
-		User u = uDao.findByUsername(r.author);
-		Reimb_Status rs = rsDao.findByStatus(r.status);
-		Reimb_Type rt = rtDao.findByType(r.type);
-		Reimb re = new Reimb(r.amount, r.submitted, r.resolved, r.description, u, null, rs, rt);
-		return iRDao.addReimb(re);
+	
+	public Reimb_Status findByReimbStatus(String status) {
+		log.info(status);
+		return rsDao.findByStatus(status);
+	}
+	
+	public Reimb_Type findByReimbType(String type) {
+		log.info(type);
+		return rtDao.findByType(type);
 	}
 
-	public boolean updateReimb(ReimbDTO r) {
+	public boolean addReimb(Reimb r) {
+		log.info("Adding reimbursements: " + r);
+		return iRDao.addReimb(r);
+//		User u = uDao.findByUsername(r.author);
+//		Reimb_Status rs = rsDao.findByStatus(r.status);
+//		Reimb_Type rt = rtDao.findByType(r.type);
+//		Reimb re = new Reimb(r.amount, r.submitted, r.resolved, r.description, u, null, rs, rt);
+//		return iRDao.addReimb(re);
+	}
+
+	public boolean updateReimb(Reimb r) {
 		log.info("Updating reimbursement: " + r);
-		User ur = uDao.findByUsername(r.author);
-		User ua = uDao.findByUsername(r.resolver);
-		Reimb_Status rs = rsDao.findByStatus(r.status);
-		Reimb_Type rt = rtDao.findByType(r.type);
-		Reimb re = new Reimb(r.id, r.amount, r.submitted, r.resolved, r.description, ua, ur, rs, rt);
-		log.info("update reimb");
+//		User ur = uDao.findByUsername(r.author);
+//		User ua = uDao.findByUsername(r.resolver);
+//		Reimb_Status rs = rsDao.findByStatus(r.status);
+//		Reimb_Type rt = rtDao.findByType(r.type);
+//		Reimb re = new Reimb(r.id, r.amount, r.submitted, r.resolved, r.description, ua, ur, rs, rt);
+
 		return iRDao.updateReimb(r);
 
+	}
+	
+	public List<Reimb> findByUser(User u) {
+		log.info("find User "+ u.getId());
+		return iRDao.findByUser(u);
 	}
 }

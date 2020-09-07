@@ -1,5 +1,6 @@
 package com.revature.models;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -16,31 +17,31 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "ers_users")
-public class User {
+public class User implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ers_users_id")
+	//@Column(name = "ers_users_id")
 	private int id;
 
-	@Column(name = "ers_username", nullable = false, unique = true)
-	private String username;
+	//@Column(name = "ers_username", nullable = false, unique = true)
+	public String username;
 
-	@Column(name = "ers_password", nullable = false)
-	private String password;
+	//@Column(name = "ers_password", nullable = false)
+	public String password;
 
-	@Column(name = "user_first_name", nullable = false)
+	//@Column(name = "user_first_name", nullable = false)
 	private String first;
 
-	@Column(name = "user_last_name", nullable = false)
+	//@Column(name = "user_last_name", nullable = false)
 	private String last;
 
-	@Column(name = "user_email", nullable = false, unique = true)
+	//@Column(name = "user_email", nullable = false, unique = true)
 	private String email;
 
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinColumn(name = "user_role_id", referencedColumnName = "ers_user_role_id", nullable = false)
-	private String userRoleId;
+	@JoinColumn(name = "user_role_id", nullable = false)
+	private User_Role userRoleId;
 
 	@OneToMany(mappedBy = "author", fetch = FetchType.LAZY)
 	private List<Reimb> list;
@@ -49,8 +50,8 @@ public class User {
 		super();
 	}
 
-	public User(int id, String username, String password, String first, String last, String email,
-			String user_Role, List<Reimb> list) {
+	public User(int id, String username, String password, String first, String last, String email, User_Role userRoleId,
+			List<Reimb> list) {
 		super();
 		this.id = id;
 		this.username = username;
@@ -59,17 +60,18 @@ public class User {
 		this.last = last;
 		this.email = email;
 		this.userRoleId = userRoleId;
-		this.list= list;
+		this.list = list;
 	}
 
-	public User(String username, String password, String first, String last, String email, String user_Role, List<Reimb> list) {
+	public User(String username, String password, String first, String last, String email, User_Role userRoleId,
+			List<Reimb> list) {
 		super();
 		this.username = username;
 		this.password = password;
 		this.first = first;
 		this.last = last;
 		this.email = email;
-		this.userRoleId = user_Role;
+		this.userRoleId = userRoleId;
 		this.list = list;
 	}
 
@@ -121,20 +123,20 @@ public class User {
 		this.email = email;
 	}
 
-	public String getUserRoleId() {
+	public User_Role getUserRoleId() {
 		return userRoleId;
 	}
 
-	public void setUserRoleId(String userRoleId) {
+	public void setUserRoleId(User_Role userRoleId) {
 		this.userRoleId = userRoleId;
 	}
-	
-	public List<Reimb> getList(){
+
+	public List<Reimb> getList() {
 		return list;
 	}
-	
+
 	public void setList(List<Reimb> list) {
-		this.list= list;
+		this.list = list;
 	}
 
 	@Override
@@ -145,6 +147,7 @@ public class User {
 		result = prime * result + ((first == null) ? 0 : first.hashCode());
 		result = prime * result + id;
 		result = prime * result + ((last == null) ? 0 : last.hashCode());
+		result = prime * result + ((list == null) ? 0 : list.hashCode());
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
 		result = prime * result + ((userRoleId == null) ? 0 : userRoleId.hashCode());
 		result = prime * result + ((username == null) ? 0 : username.hashCode());
@@ -177,6 +180,11 @@ public class User {
 				return false;
 		} else if (!last.equals(other.last))
 			return false;
+		if (list == null) {
+			if (other.list != null)
+				return false;
+		} else if (!list.equals(other.list))
+			return false;
 		if (password == null) {
 			if (other.password != null)
 				return false;
@@ -198,7 +206,9 @@ public class User {
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", username=" + username + ", password=" + password + ", first=" + first + ", last="
-				+ last + ", email=" + email + ", userRoleId=" + userRoleId + "]";
+				+ last + ", email=" + email + ", userRoleId=" + userRoleId + ", list=" + list + "]";
 	}
+
+	
 
 }

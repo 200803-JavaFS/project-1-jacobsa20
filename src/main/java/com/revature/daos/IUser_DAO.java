@@ -2,8 +2,8 @@ package com.revature.daos;
 
 import java.util.List;
 
-import com.revature.models.Reimb;
 import com.revature.models.User;
+import com.revature.models.User_Role;
 
 public interface IUser_DAO {
 
@@ -15,5 +15,11 @@ public interface IUser_DAO {
 
 	public boolean addUser(User u);
 
-	List<Reimb> findUserReimb(User u);
+	//List<Reimb> findUserReimb(User u);
+
+	boolean updateUser(User u);
+
+	User_Role findByRole(User_Role userRole);
+	
+	public User findByEmployee(String username, String password);
 }

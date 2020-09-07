@@ -6,8 +6,8 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import com.revature.models.Reimb;
 import com.revature.models.User;
+import com.revature.models.User_Role;
 import com.revature.utils.HibernateUtil;
 
 public class User_DAO implements IUser_DAO {
@@ -26,7 +26,7 @@ public class User_DAO implements IUser_DAO {
 	@Override
 	public User findByUsername(String username) {
 		Session ses = HibernateUtil.getSession();
-		User u = ses.createQuery("FROM ers_users WHERE username = " + username + ".", User.class).uniqueResult();
+		User u = ses.createQuery("FROM ers_users WHERE ers_username = " + username + ".", User.class).uniqueResult();
 		return u;
 	}
 
@@ -44,6 +44,28 @@ public class User_DAO implements IUser_DAO {
 			return false;
 		}
 	}
+	
+	@Override
+	public User_Role findByRole(User_Role userRole) {
+		Session ses = HibernateUtil.getSession();
+		User_Role ur = ses.createQuery("FROM ers_users WHERE user_role_id = " + userRole + ".", User_Role.class).getSingleResult();
+				
+		return ur;
+	}
+	
+	@Override
+	public boolean updateUser(User u) {
+		Session ses = HibernateUtil.getSession();
+		try {
+			Transaction t = ses.beginTransaction();
+			ses.merge(u);
+			t.commit();
+			return true;
+		} catch(HibernateException e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
 
 	@Override
 	public List<User> findAll() {
@@ -53,10 +75,9 @@ public class User_DAO implements IUser_DAO {
 	}
 
 	@Override
-	public List<Reimb> findUserReimb(User u) {
+	public User findByEmployee(String username, String password) {
 		Session ses = HibernateUtil.getSession();
-		List<Reimb> list = (List<Reimb>) ses
-				.createNativeQuery("SELECT * FROM ers_reimbursement WHERE reimb_author =" + u.getId(), Reimb.class).list();
+		User list = ses.createQuery("FROM ers_users WHERE ers_usernamme = " + username + "AND ers_password = " +password +".", User.class).uniqueResult();
 		return list;
 	}
 

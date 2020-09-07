@@ -12,11 +12,10 @@ import javax.persistence.Table;
 public class User_Role {
 
 	@Id
-	@GeneratedValue(strategy= GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ers_user_role_id")
 	private int id;
 
-	//private String role
 	@Column(name = "user_role", nullable = false)
 	private String role;
 
@@ -29,7 +28,6 @@ public class User_Role {
 		this.role = role;
 	}
 
-	
 	public User_Role(int id, String role) {
 		super();
 		this.id = id;

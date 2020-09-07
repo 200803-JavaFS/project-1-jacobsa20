@@ -18,7 +18,7 @@
 		<property name="hibernate.default_schema">hibernate</property>
 		<property name="hibernate.show_sql">true</property>
 		<property name="hibernate.format_sql">true</property>
-		<property name="hibernate.hbm2ddl.auto">validate</property>
+		<property name="hibernate.hbm2ddl.auto">update</property>
 		
 		<mapping class="com.revature.models.Reimb"/>
 		<mapping class="com.revature.models.User"/>
