@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Arrays;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -11,12 +12,15 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.revature.controllers.LoginController;
 import com.revature.controllers.Reimb_Controller;
+import com.revature.controllers.UserController;
+import com.revature.services.User_Service;
 
 public class MasterServlet extends HttpServlet {
 
 	private static Reimb_Controller rc = new Reimb_Controller();
 	private static LoginController lc = new LoginController();
-	private static final long serialVersionUID = 1L;
+	private static User_Service us = new User_Service();
+	private static UserController uc = new UserController();
 
 	public MasterServlet() {
 		super();
@@ -26,6 +30,7 @@ public class MasterServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		res.setContentType("application/json");
 		res.setStatus(404);
+		RequestDispatcher rd = null;
 
 		final String URI = req.getRequestURI().replace("/project1/", "");
 		String[] portions = URI.split("/");
@@ -39,7 +44,7 @@ public class MasterServlet extends HttpServlet {
 				lc.login(req, res);
 				break;
 			case "reimbursement":
-				if (req.getSession(false) != null && (boolean) req.getSession().getAttribute("logged in")) {
+				if (req.getSession(false) != null && (boolean) req.getSession().getAttribute("logged in")) {			
 					if (req.getMethod().equals("GET")) {
 						if (portions.length == 2) {
 							int id = Integer.parseInt(portions[1]);

@@ -21,22 +21,32 @@ public class User implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	//@Column(name = "ers_users_id")
+	// @Column(name = "ers_users_id")
 	private int id;
 
-	//@Column(name = "ers_username", nullable = false, unique = true)
+	// @Column(name = "ers_username", nullable = false, unique = true)
 	public String username;
 
-	//@Column(name = "ers_password", nullable = false)
+	// @Column(name = "ers_password", nullable = false)
 	public String password;
 
-	//@Column(name = "user_first_name", nullable = false)
+	public User(String username, String password, String first, String last, String email, User_Role userRoleId) {
+		super();
+		this.username = username;
+		this.password = password;
+		this.first = first;
+		this.last = last;
+		this.email = email;
+		this.userRoleId = userRoleId;
+	}
+
+	// @Column(name = "user_first_name", nullable = false)
 	private String first;
 
-	//@Column(name = "user_last_name", nullable = false)
+	// @Column(name = "user_last_name", nullable = false)
 	private String last;
 
-	//@Column(name = "user_email", nullable = false, unique = true)
+	// @Column(name = "user_email", nullable = false, unique = true)
 	private String email;
 
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
@@ -208,7 +218,5 @@ public class User implements Serializable {
 		return "User [id=" + id + ", username=" + username + ", password=" + password + ", first=" + first + ", last="
 				+ last + ", email=" + email + ", userRoleId=" + userRoleId + ", list=" + list + "]";
 	}
-
-	
 
 }
