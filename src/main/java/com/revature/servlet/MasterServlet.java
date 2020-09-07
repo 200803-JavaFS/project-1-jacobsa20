@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.revature.controllers.LoginController;
 import com.revature.controllers.Reimb_Controller;
 import com.revature.controllers.UserController;
+import com.revature.models.User;
+import com.revature.models.User_Role;
 import com.revature.services.User_Service;
 
 public class MasterServlet extends HttpServlet {
@@ -44,7 +46,7 @@ public class MasterServlet extends HttpServlet {
 				lc.login(req, res);
 				break;
 			case "reimbursement":
-				if (req.getSession(false) != null && (boolean) req.getSession().getAttribute("logged in")) {			
+				if (req.getSession(false) != null && (boolean) req.getSession().getAttribute("logged in")) {
 					if (req.getMethod().equals("GET")) {
 						if (portions.length == 2) {
 							int id = Integer.parseInt(portions[1]);
@@ -61,6 +63,33 @@ public class MasterServlet extends HttpServlet {
 			case "logout":
 				lc.logout(req, res);
 				break;
+			case "success":
+				if (req.getSession(false) != null && (boolean) req.getSession().getAttribute("logged in")) {
+					User u = (User) req.getSession().getAttribute("user");
+
+					u = us.findByUsername(u.username);
+					User_Role ur = u.getUserRoleId();
+					if (req.getMethod().equals("GET")) {
+						uc.setUserRole(req, res, u);
+					}
+				}
+				break;
+			case "updateStatus":
+				rc.updateTicket(req, res);
+				break;
+			case "addReimbursement":
+				rc.addTicket(req, res);
+				break;
+			case "filter":
+				System.out.println("in filter");
+				if (portions.length == 2) {
+					int statusId = Integer.parseInt(portions[1]);
+					rc.getByStatus(res, statusId);
+				} else {
+					rc.getAllTickets(res);
+				}
+
+				break;
 
 			}
 
@@ -74,11 +103,6 @@ public class MasterServlet extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-		// res.setContentType("application/json");
-//		res.setStatus(404);
-//
-//		LoginController lc = new LoginController();
-//		lc.login(req, res);
 
 		doGet(req, res);
 	}

@@ -6,12 +6,8 @@ import java.time.LocalDateTime;
 public class ReimbDTO {
 	public int id;
 	public double amount;
-//	public LocalDateTime submitted;
-//	public LocalDateTime resolved;
 	public String description;
-//	public String receipt;
 	public int authorID;
-//	public String resolver;
 	public String status;
 	public String type;
 
@@ -19,18 +15,16 @@ public class ReimbDTO {
 		super();
 	}
 
+	public ReimbDTO(int id, int authorID, String status) {
+		super();
+		this.id = id;
+		this.authorID = authorID;
+		this.status = status;
+	}
+
 	public ReimbDTO(int id, double amount, String description, int authorID, String status, String type) {
 		super();
 		this.id = id;
-		this.amount = amount;
-		this.description = description;
-		this.authorID = authorID;
-		this.status = status;
-		this.type = type;
-	}
-
-	public ReimbDTO(double amount, String description, int authorID, String status, String type) {
-		super();
 		this.amount = amount;
 		this.description = description;
 		this.authorID = authorID;

@@ -24,34 +24,54 @@ public class Reimb_Controller {
 
 	public void getReimbursement(HttpServletResponse res, int id) throws IOException {
 
-		Reimb r = rs.findById(id);
+		User u = us.findById(id);
+		List<Reimb> list = rs.findByUser(u);
 
-		if (r == null) {
+		if (list.isEmpty()) {
 			res.setStatus(204);
 		} else {
 
 			res.setStatus(200);
-			String json = om.writeValueAsString(r);
+			String json = om.writeValueAsString(list);
 			res.getWriter().println(json);
 		}
 	}
 
 	public void getAllTickets(HttpServletResponse res) throws IOException {
 
-		List<Reimb> allTickets = rs.findAll();
-
-		res.getWriter().println(om.writeValueAsString(allTickets));
+		List<Reimb> list = rs.findAll();
+		res.getWriter().println(om.writeValueAsString(list));
 		res.setStatus(200);
 	}
 
-	public void getByStatus(HttpServletResponse res, String status) throws IOException {
+	public void getByAuthor(HttpServletResponse res, int id) throws IOException {
+
+		User u = us.findById(id);
+		List<Reimb> list = rs.findByUser(u);
+
+		if (list.isEmpty()) {
+			res.setStatus(204);
+		} else {
+			res.setStatus(200);
+			String json = om.writeValueAsString(list);
+			res.getWriter().println(json);
+		}
+	}
+
+	public void getByStatus(HttpServletResponse res, int statusId) throws IOException {
 
 		// should come in verified that the response is of a correct type for the db
 
-		List<Reimb> specTickets = rs.findByStatus(status);
+		List<Reimb> list = rs.findByStatus(statusId);
 
-		res.getWriter().println(om.writeValueAsString(specTickets));
-		res.setStatus(200);
+		if (list.isEmpty()) {
+			res.setStatus(204);
+		} else {
+			res.setStatus(200);
+			String json = om.writeValueAsString(list);
+			res.getWriter().println(json);
+		}
+
 	}
 
 	public void addTicket(HttpServletRequest req, HttpServletResponse res) throws IOException {
@@ -92,6 +112,7 @@ public class Reimb_Controller {
 		}
 
 		Reimb addingReimb = new Reimb(amount, ldt, author, newRS, rt);
+
 		if (rs.addReimb(addingReimb)) {
 			res.setStatus(201);
 			res.getWriter().println("Reimbursement Ticket created");
@@ -114,21 +135,21 @@ public class Reimb_Controller {
 		ReimbDTO rDto = om.readValue(body, ReimbDTO.class);
 
 		int reimbID = rDto.getId();
-		Reimb r =rs.findById(reimbID);
+		Reimb r = rs.findById(reimbID);
 		String stats = rDto.getStatus();
 		stats.toLowerCase();
 		Reimb_Status rStats = null;
-		if(stats.contains("approved")) {
+		if (stats.contains("approved")) {
 			rStats = new Reimb_Status(2, "Approved");
-		} else if(stats.contains("denied")) {
-			rStats = new Reimb_Status(3, "Denied");	
+		} else if (stats.contains("denied")) {
+			rStats = new Reimb_Status(3, "Denied");
 		}
-		
+
 		int resolveID = rDto.getAuthorID();
 		r.setStatusId(rStats);
 		r.setResolved(LocalDateTime.now());
 		User resolver = us.findById(resolveID);
-		
+
 		if (rs.updateReimb(r)) {
 			res.setStatus(202);
 			res.getWriter().println("Reimbursement Ticket updated");

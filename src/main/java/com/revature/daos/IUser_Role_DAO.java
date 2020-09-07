@@ -6,5 +6,5 @@ public interface IUser_Role_DAO {
 
 	public User_Role findById(int id);
 	
-	public void addUser_Role(User_Role ur);
+	public boolean addUser_Role(User_Role ur);
 }

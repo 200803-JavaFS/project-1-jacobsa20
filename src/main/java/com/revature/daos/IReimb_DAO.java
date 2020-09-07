@@ -10,16 +10,13 @@ public interface IReimb_DAO<Reimb> {
 
 	public Reimb findById(int id);
 
-	public List<Reimb> findByStatus(String status);
+	public List<Reimb> findByStatus(int statusId);
 
-//	public boolean addReimb(Reimb r);
-
-//	public boolean updateReimb(Reimb r);
-	
 	public List<Reimb> findByUser(User u);
+
+	boolean updateReimb(com.revature.models.Reimb r);
 
 	boolean addReimb(com.revature.models.Reimb r);
 
-	boolean updateReimb(com.revature.models.Reimb r);
 
 }

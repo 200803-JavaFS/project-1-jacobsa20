@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.revature.models.LoginDTO;
 import com.revature.models.User;
 import com.revature.services.LoginService;
 
@@ -17,69 +16,50 @@ public class LoginController {
 
 	private static LoginService ls = new LoginService();
 	private static ObjectMapper om = new ObjectMapper();
+	private User user;
 
-	public void login(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+	public boolean login(HttpServletRequest req, HttpServletResponse res) throws IOException {
 
-		if (req.getMethod().equals("GET")) {
-
-			if(req.getParameterMap().containsKey("username")&& req.getParameterMap().containsKey("password")) {
-				User u = new User();
-				u.username = req.getParameter("username");
-				u.password = req.getParameter("password");
-			
-				if(ls.login(u)) {
-					HttpSession ses = req.getSession();
-					
-					ses.setAttribute("user", u);
-					ses.setAttribute("login", true);
-					res.setStatus(200);
-					res.getWriter().println("Login Successful");
-					
-				} else {
-					HttpSession ses = req.getSession();
-					ses.setAttribute("login", false);
-					
-					if(ses!=null) {
-						ses.invalidate();
-					}
-					res.setStatus(401);
-					res.getWriter().println("Login Fail.");
-				}
-			}
-
-		} else if (req.getMethod().equals("POST")) {
+		if (req.getMethod().equals("POST")) {
 			// this is how login should be handled, sending credentials in the body of a
 			// post request
-			BufferedReader reader = req.getReader();
+			BufferedReader br = req.getReader();
 
 			StringBuilder sb = new StringBuilder();
 
-			String line = reader.readLine();
+			String line = br.readLine();
 
 			while (line != null) {
 				sb.append(line);
-				line = reader.readLine();
+				line = br.readLine();
 
 			}
 			String body = new String(sb);
 			User u = om.readValue(body, User.class);
+			//user= ls.login(u);
 
 			if (ls.login(u)) {
 				HttpSession ses = req.getSession();
-				ses.setAttribute("user", u);
 				ses.setAttribute("loggedin", true);
 				res.setStatus(200);
 				res.getWriter().println("Login Successful");
+				return true;
 			} else {
 				HttpSession ses = req.getSession(false);
 				if (ses != null) {
 					ses.invalidate();
+					res.setStatus(401);
+					res.getWriter().println("Login Fail.");
+					return false;
 				}
-				res.setStatus(401);
-				res.getWriter().println("Login Fail.");
+				
 			}
-
+		}else {
+			res.getWriter().println("Nope");
+			return false;
 		}
+		return false;
+
 	}
 
 	public void logout(HttpServletRequest req, HttpServletResponse res) throws IOException {

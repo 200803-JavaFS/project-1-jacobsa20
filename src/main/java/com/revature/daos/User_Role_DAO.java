@@ -6,7 +6,7 @@ import org.hibernate.Transaction;
 import com.revature.models.User_Role;
 import com.revature.utils.HibernateUtil;
 
-public class User_Role_DAO implements IUser_Role_DAO{
+public class User_Role_DAO implements IUser_Role_DAO {
 
 	@Override
 	public User_Role findById(int id) {
@@ -16,12 +16,16 @@ public class User_Role_DAO implements IUser_Role_DAO{
 	}
 
 	@Override
-	public void addUser_Role(User_Role ur) {
+	public boolean addUser_Role(User_Role ur) {
 		Session ses = HibernateUtil.getSession();
-		Transaction t = ses.beginTransaction();
-		ses.save(ur);
-		t.commit();
-		
+		try {
+			ses.save(ur);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+
 	}
 
 }

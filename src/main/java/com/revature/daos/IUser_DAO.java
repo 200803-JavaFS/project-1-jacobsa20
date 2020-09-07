@@ -15,8 +15,6 @@ public interface IUser_DAO {
 
 	public boolean addUser(User u);
 
-	//List<Reimb> findUserReimb(User u);
-
 	boolean updateUser(User u);
 
 	User_Role findByRole(User_Role userRole);

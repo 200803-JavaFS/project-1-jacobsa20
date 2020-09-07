@@ -17,7 +17,7 @@ public class UserController {
 	private static Reimb_Service rs = new Reimb_Service();
 
 	public void setUserRole(HttpServletRequest req, HttpServletResponse res, User u) throws IOException {
-		//log message here
+		//log here
 		if(u== null) {
 			res.setStatus(204);
 		}else {

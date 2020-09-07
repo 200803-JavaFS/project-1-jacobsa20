@@ -17,8 +17,6 @@ import javax.persistence.Table;
 @Table(name = "ers_reimbursement")
 public class Reimb {
 
-	private static final long serialVersionUID = 1L;
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "reimb_id", nullable = false)
@@ -45,11 +43,11 @@ public class Reimb {
 	private User resolver;
 
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name = "reimb_status_id_fk", referencedColumnName = "reimb_status_id", nullable = false)
+	@JoinColumn(name = "reimb_status_id_fk")
 	private Reimb_Status statusId;
 
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name = "reimb_type_id_fk", referencedColumnName = "reimb_type_id", nullable = false)
+	@JoinColumn(name = "reimb_type_id_fk")
 	private Reimb_Type typeId;
 
 	public Reimb() {

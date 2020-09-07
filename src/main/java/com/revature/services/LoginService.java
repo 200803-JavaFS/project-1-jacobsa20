@@ -9,30 +9,22 @@ public class LoginService {
 	private static User_Service us = new User_Service();
 
 	public boolean login(User u) {
-		try {
-//			String username = l.username;
-//			String password = l.password;
-//			User u = us.findByUsername(username);
 
-			if (u != null) {
-				StringBuilder sb = new StringBuilder();
-				int hc = u.getPassword().hashCode();
-				sb.append(hc);
-				String hashed = sb.toString();
-
-				if (u.getPassword().equals(hashed)) {
-					return true;
-				} else {
-					System.out.println("Login Credentials are wrong.");
-				}
-			} else {
-				System.out.println("User is not identified.");
+			StringBuilder sb = new StringBuilder();
+			int hashed=u.password.hashCode();
+			sb.append(hashed);
+			String hashedPassword= sb.toString();
+			
+			User uSer = us.findByUserPassword(u.username,hashedPassword);
+			System.out.println("hashed: "+ hashedPassword);
+			System.out.println(uSer.getPassword());
+			
+			
+			if (u.username.equals(uSer.getUsername()) && hashedPassword.equals(uSer.getPassword())) {
+				
+				return true;
 			}
-		} catch (NullPointerException e) {
-			System.out.println("Login Failed.");
-			e.printStackTrace();
-		}
-		return false;
+			return false;
 	}
 
 }

@@ -36,7 +36,7 @@ public class User_DAO implements IUser_DAO {
 		try {
 			Transaction t = ses.beginTransaction();
 			ses.save(u);
-			System.out.println("Adding user.");
+			// System.out.println("Adding user.");
 			t.commit();
 			return true;
 		} catch (HibernateException e) {
@@ -44,25 +44,26 @@ public class User_DAO implements IUser_DAO {
 			return false;
 		}
 	}
-	
+
 	@Override
 	public User_Role findByRole(User_Role userRole) {
 		Session ses = HibernateUtil.getSession();
-		User_Role ur = ses.createQuery("FROM ers_users WHERE user_role_id = " + userRole + ".", User_Role.class).getSingleResult();
-				
+		User_Role ur = ses.createQuery("FROM ers_users WHERE user_role_id = " + userRole + ".", User_Role.class)
+				.getSingleResult();
 		return ur;
 	}
-	
+
 	@Override
 	public boolean updateUser(User u) {
 		Session ses = HibernateUtil.getSession();
+		Transaction t = ses.beginTransaction();
 		try {
-			Transaction t = ses.beginTransaction();
 			ses.merge(u);
 			t.commit();
 			return true;
-		} catch(HibernateException e) {
+		} catch (HibernateException e) {
 			e.printStackTrace();
+			t.rollback();
 			return false;
 		}
 	}
@@ -77,8 +78,17 @@ public class User_DAO implements IUser_DAO {
 	@Override
 	public User findByEmployee(String username, String password) {
 		Session ses = HibernateUtil.getSession();
-		User list = ses.createQuery("FROM ers_users WHERE ers_usernamme = " + username + "AND ers_password = " +password +".", User.class).uniqueResult();
-		return list;
+		return (User) ses.createQuery("FROM User U WHERE U.username = :userName").setParameter("userName", username)
+				.uniqueResult();
+		
+		
+		//		Session ses = HibernateUtil.getSession();
+//		User list = ses.createQuery("FROM User WHERE username = " + username, User.class).uniqueResult();
+//		if (list.getPassword().equals(password)) {
+//			return list;
+//		} else {
+//			return null;
+//		}
 	}
 
 }

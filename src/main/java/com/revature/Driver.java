@@ -95,7 +95,7 @@ public class Driver {
 	}
 	
 //	public static void updateReimb() {
-//		Reimb r = rDao.findById(id);
+//		Reimb r = rDao.findById();
 //		Reimb_Status rStats= new Reimb_Status(2, "Approved");
 //		r.setStatusId(rStats);
 //		rDao.updateReimb(r);
