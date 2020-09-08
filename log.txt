@@ -109,3 +109,8 @@
 2020-09-07 23:46:31 DEBUG User_Service:40 - The password of the inputted user is 1509442
 2020-09-07 23:46:31 INFO  User_Service:42 - Login sucessful!
 2020-09-07 23:49:51 INFO  User_Service:38 - Finding user with password
+2020-09-08 09:30:20 INFO  User_Service:38 - Finding user with password
+2020-09-08 09:30:33 DEBUG User_Service:40 - The password of the inputted user is 1509442
+2020-09-08 09:32:06 INFO  User_Service:38 - Finding user with password
+2020-09-08 09:32:06 DEBUG User_Service:40 - The password of the inputted user is 1509442
+2020-09-08 09:32:06 INFO  User_Service:42 - Login sucessful!

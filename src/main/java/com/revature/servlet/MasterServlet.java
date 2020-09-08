@@ -66,7 +66,7 @@ public class MasterServlet extends HttpServlet {
 			case "success":
 				User u = (User) req.getSession().getAttribute("user");
 				System.out.println(u);
-				//u = us.findByUsername(u.username);
+				u = us.findByUsername(u.username);
 				User_Role ur = u.getUserRoleId();
 				if (req.getMethod().equals("GET")) {
 					uc.setUserRole(req, res, u);

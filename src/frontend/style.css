@@ -1,10 +1,20 @@
-﻿
-h3, h1{
+﻿h3, h1{
   color: cornflowerblue;
-  font-size: xx-large;
+  font-size: 20px;
   font-family: 'Courier New';
   align-content: center;
   margin-bottom: 10px;
+}
+h6{
+  color: black;
+  font-family: 'Courier New';
+  align-content: center;
+
+}
+
+body{
+  background-color: lightgrey;
+  align-content: center;
 }
 
 .col-sm-10 {
@@ -22,11 +32,27 @@ h3, h1{
   cursor: pointer;
 }
 
+#password{
+  align-content: center;
+}
+#username{
+ align-self: auto; 
+}
+
+.div{
+  position: relative;
+}
+
 .divOnly {
   margin: auto;
   width: 50%;
   position: center;
   padding-top: 110px;
+}
+
+#statusChoice{
+  width: max-content;
+  align-content: center;
 }
 
 .reimbTable {
