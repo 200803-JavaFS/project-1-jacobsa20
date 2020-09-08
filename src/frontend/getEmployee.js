@@ -16,8 +16,8 @@ async function allReimbsByAuthor() {
     if (response.status === 200) {
         console.log(response);
         let data = await response.json();
-        console.log(data);
-        
+        //console.log(data);
+        //put into the table instead of just console
         for (let reimbursement of data) {
             console.log(reimbursement);
             
@@ -36,7 +36,8 @@ async function allReimbsByAuthor() {
 
             dateS = new Date(reimbursement.submitted);
             sTime.innerHTML = dateS.toLocaleString();
-            
+            // rTime.innerHTML = reimbursement.resolved;
+
             let reimbResolvedTime = reimbursement.resolved;
             if (reimbResolvedTime != null) {
                 console.log(reimbursement.resolved);
@@ -48,7 +49,8 @@ async function allReimbsByAuthor() {
 
             desc.innerHTML = reimbursement.description;
             author.innerHTML = reimbursement.author.username;
-           
+            //insert if statement if resolver is not equal to null or null
+
             let reimbResolver = reimbursement.resolver;
             if (reimbResolver != null) {
                 console.log(reimbResolver);
@@ -69,7 +71,7 @@ async function addReimb() {
     let reimbAmount = document.getElementById("rAmount").value;
     let reimbDesc = document.getElementById("rDesc").value;
 
-    const rbsType = document.querySelectorAll('input[name="reimb_type"]');
+    const rbsType = document.querySelectorAll('input[name="reimbType"]');
     let type;
     for (const rb of rbsType) {
         if (rb.checked) {
@@ -88,7 +90,7 @@ async function addReimb() {
     }
     console.log(reimbursement);
 
-    let response = await fetch(url + "addReimb", {
+    let response = await fetch(url + "addReimbursement", {
         method: 'POST',
         body: JSON.stringify(reimbursement),
         credentials: "include"
