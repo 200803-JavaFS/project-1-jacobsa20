@@ -1,3 +1,79 @@
 <!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
+	integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I"
+	crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="style.css">
+<meta charset="ISO-8859-1">
+<title>Dunder Mifflin Reimbursement Manager Portal</title>
 
+</head>
+<body>
+
+	<div align="center">
+		<h3>Manager Page</h3>
+	</div>
+
+
+	<div id="tableReimb">
+		<div class="filter-group">
+			<label>Status</label> <select onchange="filterStatus()"
+				class="form-control" name="statusChoice" id="statusChoice">
+				<option value=4>All</option>
+				<option value=1>Pending</option>
+				<option value=2>Approved</option>
+				<option value=3>Denied</option>
+			</select>
+		</div>
+		<table class="reimbTable">
+			<thead>
+				<tr class="columns">
+					<th id="reimbId">Id</th>
+					<th id="reimbAmount">Amount</th>
+					<th id="reimbSubTime">Submission Time</th>
+					<th id="reimbResTime">Resolved Time</th>
+					<th id="reimbDesc">Description</th>
+					<th id="reimbAuthor">Created By</th>
+					<th id="reimbResolver">Resolved By</th>
+					<th id="reimbStatus">Status</th>
+					<th id="reimbType">Type</th>
+				</tr>
+			</thead>
+			<tbody class="reimbTable" id="bodyTable">
+				<tr class="rows">
+				</tr>
+			</tbody>
+		</table>
+		<button onclick="logout()" type="button" id="logout" class="btn">Logout</button>
+	</div>
+
+	<div class="reimbForm" id="changeStatusForm">
+		<form id="form_122252" class="formInfo" method="post" action="">
+			<div class="form_description">
+				<h1 align="relative">Approve or Deny a Request</h1>
+				<p></p>
+			</div>
+			<div class="formData">
+				<label class="description" for="reimbID">Reimbursement ID </label> <input
+					id="idInput" name="reimbID" class="element number" size="1"
+					type="number" /> <br /> <span> <input id="rSApprove"
+					name="reimbStatus" class="element radio" type="radio"
+					value="Approved" /> <label class="choice" for="reimbStatus">Approve</label>
+					<input id="rSDeny" name="reimbStatus" class="element radio"
+					type="radio" value="Denied" /> <label class="choice"
+					for="reimbStatus">Deny</label>
+				</span> <br />
+				<br />
+				<button onclick="updateStatus()" type="button" id="updateRequest"
+					class="btn">Update Request</button>
+			</div>
+		</form>
+	</div>
+
+	<script src="fetchManager.js"></script>
+	<script src="fetchFMFR.js"></script>
+</body>
+</html>
 </html>

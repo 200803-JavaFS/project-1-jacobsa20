@@ -1,3 +1,86 @@
 <!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
+	integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I"
+	crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="style.css">
+<meta charset="ISO-8859-1">
+<title>Dunder Mifflin Employee Portal</title>
+</head>
+<body>
 
+	<div align="center">
+		<h3>Dunder Mifflin Employee Page</h3>
+
+	</div>
+
+	<div id="tableReimb">
+		<table class="reimbTable">
+			<thead>
+				<tr class="columns">
+					<th id="reimbId">Id</th>
+					<th id="reimbAmount">Amount</th>
+					<th id="reimbSubTime">Submission Time</th>
+					<th id="reimbResTime">Resolved Time</th>
+					<th id="reimbDesc">Description</th>
+					<th id="reimbAuthor">Created By</th>
+					<th id="reimbResolver">Resolved By</th>
+					<th id="reimbStatus">Status</th>
+					<th id="reimbType">Type</th>
+				</tr>
+			</thead>
+			<tbody class="reimbTable" id="bodyTable">
+			</tbody>
+		</table>
+		<button align="right" onclick="logout()" type="button" id="logout"
+			class="btn">Logout</button>
+	</div>
+
+	<div class="reimbForm">
+
+		<form id="form_122252" class="formInfo" method="post" action="">
+			<div class="form_description">
+				<h1 align="relative">Add Ticket Request</h1>
+				<p></p>
+			</div>
+			<div class="formData">
+				<label class="description" for="reimbAmount">Amount </label>
+				<div>
+					<input id="rAmount" name="reimbAmount" class="element text medium"
+						type="text" maxlength="255" />
+				</div>
+				<p class="guidelines" id="guide_1">
+					<small>00.00 format</small>
+				</p>
+				<label class="description" for="reimbDesc">Description </label>
+				<div>
+					<input id="rDesc" name="reimbDesc" class="element text large"
+						type="text" maxlength="255" />
+				</div>
+				<br /> <label class="description" for="reimbType">Type of
+					Reimbursement </label> <br /> <span> <input id="element_4_1"
+					name="reimbType" class="element radio" type="radio" value="Lodging" />
+					<label class="choice" for="lodging">Lodging</label> <input
+					id="element_4_2" name="reimbType" class="element radio"
+					type="radio" value="Travel" /> <label class="choice"
+					for="element_3_2">Travel</label> <input id="element_4_3"
+					name="reimbType" class="element radio" type="radio" value="Food" />
+					<label class="choice" for="element_3_3">Food</label> <input
+					id="element_4_4" name="reimbType" class="element radio"
+					type="radio" value="Other" /> <label class="choice"
+					for="element_3_4">Other</label>
+
+				</span> <br />
+				<br />
+				<button onclick="addReimb()" type="button" id="addRequest"
+					class="btn">Add Request</button>
+			</div>
+		</form>
+
+	</div>
+	<script src="fetchManager.js"></script>
+	<script src="fetchEmployeeFR.js"></script>
+</body>
 </html>
