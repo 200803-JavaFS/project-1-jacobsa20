@@ -1,9 +1,9 @@
-allReimbssByAuthor();
+allReimbsByAuthor();
 let userID = sessionStorage.getItem("idUser");
 async function allReimbsByAuthor() {
     console.log("in all reimbursements")
     document.getElementById("bodyTable").innerText = "";
-    // need to get id and display reimbursements by id
+    
     let table = document.getElementById("bodyTable");
     let userID = sessionStorage.getItem("idUser");
     console.log("user: " + userID);
@@ -72,21 +72,21 @@ async function addReimb() {
     let reimbDesc = document.getElementById("rDesc").value;
 
     const rbsType = document.querySelectorAll('input[name="reimbType"]');
-    let typeChoice;
+    let type;
     for (const rb of rbsType) {
         if (rb.checked) {
-            typeChoice = rb.value;
+            type = rb.value;
             break;
         }
     }
-    console.log(typeChoice);
+    console.log(type);
 
 
     let reimbursement = {
         amount: reimbAmount,
         description: reimbDesc,
         authorId: userID,
-        type: typeChoice
+        type: type
     }
     console.log(reimbursement);
 
