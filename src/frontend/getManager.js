@@ -1,5 +1,5 @@
 // Alli
-const url = "http://localhost:8080/project1/"
+let url = "http://localhost:8080/project1/"
 
 document.getElementById("loginbtn").addEventListener("click", login_Function);
 
@@ -13,38 +13,37 @@ async function login_Function() {
         password: userPass
     }
     console.log(user);
-    let resp = await fetch(url + "login", {
+    let user_response = await fetch(url + "login", {
         method: 'POST',
         body: JSON.stringify(user),
         credentials: "include"
     });
     console.log(status);
 
-    if (resp.status === 200) {
-        console.log(resp);
+    if (user_response.status === 200) {
+        console.log(user_response);
         document.getElementById("login-row").innerText = "Login Successful.";
-        redirectPage();
+        redirect();
 
     } else {
         document.getElementById("login-row").innerText = "Login Failed.";
     }
 }
-async function redirectPage() {
+async function redirect() {
 
-    let resp = await fetch(url + "success", {
+    let user_response = await fetch(url + "success", {
         method: 'GET',
         credentials: "include"
     });
-    console.log(resp.status);
-    if (resp.status === 200) {
-        console.log(resp);
-        let data = await resp.json();
+    console.log(user_response.status);
+    if (user_response.status === 200) {
+        console.log(user_response);
+        let data = await user_response.json();
         console.log(data);
-        console.log(data.id);
-        let idUser = data.id;
-        sessionStorage.setItem("idUser", idUser);
-        console.log(data.User_Role.role);
-        let role = data.User_Role.role;
+        let id_User = data.id;
+        sessionStorage.setItem("id_User", id_User);
+        console.log(data.userRole.role);
+        let role = data.userRole.role;
 
         if (role == "Employee") {
             window.location.href = "employeeSuccess.html";

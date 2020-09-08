@@ -64,14 +64,12 @@ public class MasterServlet extends HttpServlet {
 				lc.logout(req, res);
 				break;
 			case "success":
-				if (req.getSession(false) != null && (boolean) req.getSession().getAttribute("logged in")) {
-					User u = (User) req.getSession().getAttribute("user");
-
-					u = us.findByUsername(u.username);
-					User_Role ur = u.getUserRoleId();
-					if (req.getMethod().equals("GET")) {
-						uc.setUserRole(req, res, u);
-					}
+				User u = (User) req.getSession().getAttribute("user");
+				System.out.println(u);
+				//u = us.findByUsername(u.username);
+				User_Role ur = u.getUserRoleId();
+				if (req.getMethod().equals("GET")) {
+					uc.setUserRole(req, res, u);
 				}
 				break;
 			case "updateStatus":

@@ -95,3 +95,17 @@
 2020-09-07 20:46:56 INFO  User_Service:38 - Finding user with password
 2020-09-07 20:47:07 DEBUG User_Service:40 - The password of the inputted user is 1509442
 2020-09-07 20:47:07 INFO  User_Service:42 - Login sucessful!
+2020-09-07 21:48:26 INFO  Reimb_Service:42 - Finding Reimb by Status
+2020-09-07 21:51:38 INFO  User_Service:38 - Finding user with password
+2020-09-07 21:51:52 DEBUG User_Service:40 - The password of the inputted user is 1509442
+2020-09-07 21:51:52 INFO  User_Service:42 - Login sucessful!
+2020-09-07 21:54:14 INFO  User_Service:38 - Finding user with password
+2020-09-07 21:54:15 DEBUG User_Service:40 - The password of the inputted user is 1509442
+2020-09-07 21:54:15 INFO  User_Service:42 - Login sucessful!
+2020-09-07 23:23:13 INFO  User_Service:38 - Finding user with password
+2020-09-07 23:23:26 DEBUG User_Service:40 - The password of the inputted user is 1509442
+2020-09-07 23:23:26 INFO  User_Service:42 - Login sucessful!
+2020-09-07 23:46:20 INFO  User_Service:38 - Finding user with password
+2020-09-07 23:46:31 DEBUG User_Service:40 - The password of the inputted user is 1509442
+2020-09-07 23:46:31 INFO  User_Service:42 - Login sucessful!
+2020-09-07 23:49:51 INFO  User_Service:38 - Finding user with password

@@ -22,17 +22,6 @@ h3, h1{
   cursor: pointer;
 }
 
-#loginbtn {
-  background-color: white;
-  color: black;
-  border: 2px solid cornflowerblue;
-}
-
-#loginbtn:hover {
-  background-color: navy;
-  color: white;
-}
-
 .divOnly {
   margin: auto;
   width: 50%;
@@ -121,8 +110,4 @@ table.reimbTable {
   text-align: center;
   vertical-align: middle;
   glyph-orientation-horizontal: inherit;
-}
-
-#logout {
- float: right;
 }

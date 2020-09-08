@@ -1,12 +1,11 @@
-// JavaScript source code
-allReimbursements();
+
+allReimbs();
 let userID = sessionStorage.getItem("idUser");
 
 var sel = document.getElementById('statusChoice');
-async function allReimbursements() {
+async function allReimbs() {
     console.log("in all reimbursements finance manager");
-    //document.getElementById("bodyTable").innerText = "";
-    // need to get id and display reimbursements by id
+    
     let table = document.getElementById("bodyTable");
     
 
@@ -34,11 +33,10 @@ async function allReimbursements() {
             let type = row.insertCell(8);
             id.innerHTML = reimbursement.id;
             amount.innerHTML = "$ " + reimbursement.amount;
-            //sTime.innerHTML = reimbursement.submitted;
+            
             dateS = new Date(reimbursement.submitted);
             sTime.innerHTML = dateS.toLocaleString();
-            // rTime.innerHTML = reimbursement.resolved;
-
+            
             let reimbResolvedTime = reimbursement.resolved;
             if (reimbResolvedTime != null) {
                 dateR = new Date(reimbursement.resolved);
@@ -74,7 +72,7 @@ async function updateStatus() {
     //check which radio is checked
     //if checked value= 0 update status to deny
     //else if checked value = 1 update status to approve
-    const rbs = document.querySelectorAll('input[name="reimbStatus"]');
+    const rbs = document.querySelectorAll('input[name="reimb_status"]');
     let selectedValue;
     for (const rb of rbs) {
         if (rb.checked) {
@@ -89,7 +87,7 @@ async function updateStatus() {
         status: selectedValue
     }
 
-    let resp = await fetch(url + "updateStatus", {
+    let resp = await fetch(url + "updateTicket", {
         method: 'POST',
         body: JSON.stringify(status),
         credentials: "include"
